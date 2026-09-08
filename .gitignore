@@ -1,0 +1,24 @@
+# Python & virtual env
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.local
+
+# Node / Frontend
+node_modules/
+dist/
+dist_submission/
+.turbo/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
