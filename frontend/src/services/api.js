@@ -96,3 +96,94 @@ export async function getFile(id) {
     return mockApi.getFile(id);
   }
 }
+
+// -------------------------------------------------------------
+// Authentication & RBAC APIs
+// -------------------------------------------------------------
+export async function getAuthMe() {
+  try {
+    const { data } = await apiClient.get('/api/auth/me');
+    return data;
+  } catch (err) {
+    console.warn('[API] /api/auth/me failed:', err.message);
+    return {
+      status: 'authenticated',
+      user: {
+        id: 'usr_lead_01',
+        name: 'Dhruv Patel',
+        email: 'dhruv.lead@engineering.org',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80',
+        role: 'Lead Architect',
+        role_code: 'lead_architect',
+        permissions: ['prioritize', 'export_jira', 'sync_notion', 'override_weights', 'manage_integrations'],
+        team: 'Core Platform & Architecture'
+      }
+    };
+  }
+}
+
+export async function getDemoProfiles() {
+  try {
+    const { data } = await apiClient.get('/api/auth/profiles');
+    return data;
+  } catch (err) {
+    return { profiles: {}, active_profile: {} };
+  }
+}
+
+export async function loginWithGoogle(credential) {
+  const { data } = await apiClient.post('/api/auth/google', { credential });
+  return data;
+}
+
+export async function switchDemoProfile(profile_key) {
+  const { data } = await apiClient.post('/api/auth/switch-profile', { profile_key });
+  return data;
+}
+
+export async function logoutAuth() {
+  const { data } = await apiClient.post('/api/auth/logout');
+  return data;
+}
+
+// -------------------------------------------------------------
+// Integrations: Jira & Notion APIs
+// -------------------------------------------------------------
+export async function getIntegrationsStatus() {
+  try {
+    const { data } = await apiClient.get('/api/integrations/status');
+    return data;
+  } catch (err) {
+    return {
+      google_auth: { service: 'Google OAuth2', configured: false, mode: 'sandbox_mock' },
+      jira: { service: 'Atlassian Jira', configured: false, mode: 'sandbox_mock', domain: 'engineering-hub.atlassian.net', project_key: 'DEBT' },
+      notion: { service: 'Notion Workspace', configured: false, mode: 'sandbox_mock', database_id: 'notion_db_pei_backlog_2026' }
+    };
+  }
+}
+
+export async function updateIntegrationsConfig(config) {
+  const { data } = await apiClient.post('/api/integrations/config', config);
+  return data;
+}
+
+export async function createJiraIssue(payload) {
+  const { data } = await apiClient.post('/api/integrations/jira/create-issue', payload);
+  return data;
+}
+
+export async function bulkExportJira(payload) {
+  const { data } = await apiClient.post('/api/integrations/jira/bulk-export', payload);
+  return data;
+}
+
+export async function syncNotion(payload) {
+  const { data } = await apiClient.post('/api/integrations/notion/sync', payload);
+  return data;
+}
+
+export async function createNotionReport(payload) {
+  const { data } = await apiClient.post('/api/integrations/notion/create-report', payload);
+  return data;
+}
+

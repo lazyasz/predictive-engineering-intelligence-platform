@@ -46,6 +46,27 @@ class Settings(BaseSettings):
     # Remediation Effort Impact Weight in Final Score
     WEIGHT_REMEDIATION_EFFORT: float = Field(default=0.15, ge=0.0, le=1.0)
 
+    # Production & Deployment Settings
+    FRONTEND_URL: str = "http://localhost:5173"
+    JWT_SECRET: str = "pei-jwt-secret-key-production-2026"
+    SANDBOX_MODE: bool = False
+
+    # Integrations: Google OAuth (Server-Side Authorization Code Flow)
+    GOOGLE_CLIENT_ID: str = ""
+    GOOGLE_CLIENT_SECRET: str = ""
+    GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/v1/auth/google/callback"
+
+    # Integrations: Atlassian Jira Cloud
+    JIRA_BASE_URL: str = ""
+    JIRA_DOMAIN: str = ""
+    JIRA_EMAIL: str = ""
+    JIRA_API_TOKEN: str = ""
+    JIRA_PROJECT_KEY: str = "DEBT"
+
+    # Integrations: Notion
+    NOTION_API_KEY: str = ""
+    NOTION_DATABASE_ID: str = ""
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
@@ -55,3 +76,5 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+

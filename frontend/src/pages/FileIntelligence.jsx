@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFile } from '../hooks/useFile';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { FileCode, Clock, Users, GitBranch, Shield, Target } from 'lucide-react';
+import { FileCode, Clock, Users, GitBranch, Shield, Target, Layers, Database } from 'lucide-react';
 import LoadingState from '../components/ui/LoadingState';
 import ErrorState from '../components/ui/ErrorState';
 import EmptyState from '../components/ui/EmptyState';
@@ -9,24 +10,59 @@ import PageHeader from '../components/ui/PageHeader';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import RiskIndicator from '../components/risk/RiskIndicator';
+import JiraExportModal from '../components/integrations/JiraExportModal';
+import NotionSyncModal from '../components/integrations/NotionSyncModal';
 import { formatScore } from '../utils/risk';
 
 export default function FileIntelligence() {
   const { id } = useParams();
   const { data, loading, error } = useFile(id);
 
+  const [jiraOpen, setJiraOpen] = useState(false);
+  const [notionOpen, setNotionOpen] = useState(false);
+
   if (loading) return <LoadingState message="Loading file intelligence..." />;
   if (error) return <ErrorState message={error} />;
   if (!data) return <EmptyState title="File not found" />;
 
+  const componentData = {
+    component: data.file,
+    priority_score: data.priority_score || 80.0,
+    remediation_effort_hours: (data.remediation_effort || 5) * 2,
+    defect_probability: (data.defects || 2) * 0.2,
+    technical_risk: data.risk_score || 75.0,
+    business_impact: (data.business_impact || 7) * 10,
+    roi_quadrant: data.severity === 'critical' ? 'Strategic Refactoring' : 'Quick Wins',
+    explanation: data.description || 'Target file exhibits high complexity and historical defect density.',
+  };
+
   return (
     <div>
-      <PageHeader
-        title={data.file}
-        description={data.description}
-      >
-        <Badge variant={data.severity}>{data.severity}</Badge>
-      </PageHeader>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <PageHeader
+          title={data.file}
+          description={data.description}
+        >
+          <Badge variant={data.severity}>{data.severity}</Badge>
+        </PageHeader>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setJiraOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl shadow-xs transition cursor-pointer"
+          >
+            <Layers className="h-4 w-4" />
+            <span>Export to Jira</span>
+          </button>
+          <button
+            onClick={() => setNotionOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl shadow-xs transition cursor-pointer"
+          >
+            <Database className="h-4 w-4 text-amber-300" />
+            <span>Document in Notion</span>
+          </button>
+        </div>
+      </div>
 
       {/* Key Metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
@@ -124,6 +160,26 @@ export default function FileIntelligence() {
           </ul>
         </Card>
       )}
+
+      {/* Jira Modal */}
+      <JiraExportModal
+        isOpen={jiraOpen}
+        onClose={() => setJiraOpen(false)}
+        component={componentData}
+      />
+
+      {/* Notion Modal */}
+      <NotionSyncModal
+        isOpen={notionOpen}
+        onClose={() => setNotionOpen(false)}
+        components={[componentData]}
+        summaryStats={{
+          total_components: 1,
+          avg_priority: data.priority_score,
+          quick_wins: 1,
+          hotspots: 1
+        }}
+      />
     </div>
   );
 }

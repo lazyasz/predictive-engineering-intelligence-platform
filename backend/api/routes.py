@@ -8,6 +8,8 @@ from backend.api.metrics_routes import router as metrics_router
 from backend.api.predictions_routes import router as predictions_router
 from backend.api.business_routes import router as business_router
 from backend.api.priority_routes import router as priority_router
+from backend.api.auth_routes import router as auth_router
+from backend.api.integrations_routes import router as integrations_router
 
 api_router = APIRouter()
 
@@ -17,3 +19,6 @@ api_router.include_router(metrics_router)
 api_router.include_router(predictions_router)
 api_router.include_router(business_router)
 api_router.include_router(priority_router)
+api_router.include_router(auth_router)
+api_router.include_router(integrations_router)
+
