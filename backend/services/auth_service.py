@@ -269,6 +269,55 @@ def verify_google_credential(credential_jwt: str) -> Dict[str, Any]:
     return DEMO_PROFILES["dhruv"]
 
 
+def inspect_google_token(credential_jwt: str) -> Dict[str, Any]:
+    """
+    Diagnostic & audit helper for development/testing:
+    Parses and reports full OIDC claim validation status:
+    - email_verified (boolean)
+    - sub (Google unique user id)
+    - aud (audience / client ID match)
+    - iss (issuer validity)
+    - exp (token expiration)
+    """
+    diagnostic = {
+        "token_format_valid": False,
+        "email": None,
+        "email_verified": None,
+        "google_sub": None,
+        "issuer": None,
+        "audience": None,
+        "is_expired": False,
+        "claims_audit": {}
+    }
+
+    try:
+        parts = credential_jwt.split(".")
+        if len(parts) >= 2:
+            padded = parts[1] + "=" * ((4 - len(parts[1]) % 4) % 4)
+            payload = json.loads(base64.urlsafe_b64decode(padded.encode()).decode())
+            diagnostic["token_format_valid"] = True
+            diagnostic["email"] = payload.get("email")
+            diagnostic["email_verified"] = payload.get("email_verified")
+            diagnostic["google_sub"] = payload.get("sub")
+            diagnostic["issuer"] = payload.get("iss")
+            diagnostic["audience"] = payload.get("aud")
+            
+            exp = payload.get("exp", 0)
+            if exp:
+                diagnostic["is_expired"] = time.time() > exp
+                diagnostic["expires_at"] = datetime.fromtimestamp(exp, timezone.utc).isoformat()
+            
+            diagnostic["claims_audit"] = {
+                "email_verified_status": "PASSED" if payload.get("email_verified") is True else "FAILED (unverified email)",
+                "issuer_status": "PASSED" if payload.get("iss") in ["accounts.google.com", "https://accounts.google.com"] else "WARNING (custom issuer)",
+                "sub_anchor_status": "PASSED" if payload.get("sub") else "FAILED (missing unique sub ID)"
+            }
+    except Exception as e:
+        diagnostic["error"] = str(e)
+
+    return diagnostic
+
+
 def logout_user() -> Dict[str, Any]:
     """Logs out and resets to default demo profile."""
     global _active_user

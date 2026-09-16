@@ -12,6 +12,7 @@ from backend.services.auth_service import (
     get_current_user,
     set_active_profile,
     verify_google_credential,
+    inspect_google_token,
     get_google_login_url,
     exchange_google_code,
     mint_user_jwt,
@@ -141,6 +142,24 @@ def login_with_google_id_token(payload: GoogleLoginRequest):
         "user": user,
         "token": token
     }
+
+
+@router.post("/google/inspect", summary="Inspect and Audit Google ID Token Claims")
+def inspect_google_token_endpoint(payload: GoogleLoginRequest):
+    """
+    Diagnostic & audit endpoint for inspecting Google OIDC token claims:
+    - email_verified
+    - sub (Google unique user id)
+    - aud (audience)
+    - iss (issuer)
+    - exp (token expiration)
+    """
+    if not payload.credential:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing token credential to inspect."
+        )
+    return inspect_google_token(payload.credential)
 
 
 @router.post("/switch-profile", summary="Switch Demo Identity Profile")

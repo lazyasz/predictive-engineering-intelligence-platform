@@ -77,3 +77,27 @@ def test_permanent_sub_key_consistency():
 
     assert user1["google_sub"] == user2["google_sub"] == "unique_google_sub_12345"
     assert user1["id"] == user2["id"] == "usr_google_unique_google_sub_12345"
+
+
+def test_inspect_google_token_diagnostic():
+    """Diagnostic endpoint inspects and audits token claims."""
+    from backend.services.auth_service import inspect_google_token
+
+    payload = {
+        "email": "dhruvsakhare2006@gmail.com",
+        "email_verified": True,
+        "sub": "google_uid_998877",
+        "iss": "https://accounts.google.com",
+        "aud": "my-app.apps.googleusercontent.com",
+        "exp": int(time.time()) + 3600
+    }
+    token = create_mock_jwt(payload)
+    report = inspect_google_token(token)
+
+    assert report["token_format_valid"] is True
+    assert report["email_verified"] is True
+    assert report["google_sub"] == "google_uid_998877"
+    assert report["claims_audit"]["email_verified_status"] == "PASSED"
+    assert report["claims_audit"]["issuer_status"] == "PASSED"
+    assert report["claims_audit"]["sub_anchor_status"] == "PASSED"
+
