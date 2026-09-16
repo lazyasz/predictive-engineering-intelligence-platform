@@ -70,14 +70,25 @@ class RepoScannerService:
 
         # 2. Check if this matches a pre-loaded project in the Gold Lakehouse
         if os.path.exists(cls.GOLD_FEATURES_PATH):
-            df_gold = pd.read_parquet(cls.GOLD_FEATURES_PATH)
-            matching_projects = [p for p in df_gold["project_id"].unique() if repo_name.lower() in p.lower()]
-            if matching_projects:
-                target_project = matching_projects[0]
-                return cls._ingest_gold_lakehouse_project(db, target_project, clean_url)
+            try:
+                import pyarrow.parquet as pq
+                # Check project schema / metadata or filtered projects
+                known_projects = [
+                    "zookeeper", "commons-io", "felix", "batik", "activemq", "camel", 
+                    "cxf", "directory-server", "drill", "flink", "flume", "groovy", 
+                    "hadoop", "hbase", "hive", "ignite", "kafka", "kylin", "lucy", 
+                    "mahout", "nifi", "storm", "struts", "tika", "tomcat", "wicket"
+                ]
+                matching = [p for p in known_projects if repo_name.lower() in p.lower()]
+                if matching:
+                    target_project = matching[0]
+                    return cls._ingest_gold_lakehouse_project(db, target_project, clean_url)
+            except Exception as e:
+                print(f"[-] Parquet lookup note: {e}")
 
         # 3. Live scan via GitHub API
         return cls._scan_live_github_api(db, owner, repo_name, clean_url)
+
 
     @classmethod
     def _scan_live_github_api(cls, db: Session, owner: str, repo_name: str, repo_url: str) -> Dict[str, Any]:
@@ -304,9 +315,23 @@ class RepoScannerService:
 
     @classmethod
     def _ingest_gold_lakehouse_project(cls, db: Session, project_id: str, repo_url: str) -> Dict[str, Any]:
-        """Ingests a real Apache project directly from the Gold Lakehouse features."""
-        df_gold = pd.read_parquet(cls.GOLD_FEATURES_PATH)
-        proj_df = df_gold[df_gold["project_id"] == project_id]
+        """Ingests a real Apache project directly from the Gold Lakehouse features using filtered streaming."""
+        import pyarrow.parquet as pq
+        
+        # Read only the columns needed for this specific project
+        table = pq.read_table(
+            cls.GOLD_FEATURES_PATH,
+            columns=[
+                "project_id", "file_path", "estimated_loc", "churn",
+                "fault_count", "code_smells_count", "total_debt_minutes",
+                "blocker_issues", "critical_issues"
+            ],
+            filters=[("project_id", "==", project_id)]
+        )
+        proj_df = table.to_pandas()
+        if proj_df.empty:
+            # Fallback to general scan if project rows empty
+            return cls._scan_live_github_api(db, "apache", project_id, repo_url)
 
         repo = db.query(Repository).filter(Repository.name == project_id).first()
         if not repo:
@@ -329,6 +354,7 @@ class RepoScannerService:
             blocker_issues=("blocker_issues", "sum"),
             critical_issues=("critical_issues", "sum")
         ).reset_index().sort_values(by=["fault_count", "churn"], ascending=False).head(25)
+
 
         scanned_files = []
         for _, row in top_files.iterrows():

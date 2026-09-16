@@ -377,13 +377,13 @@ def seed_database(db: Session) -> None:
     PriorityService.analyze_all_files(db, repo.id)
     RecommendationService.generate_all_recommendations(db, repo.id)
 
-    # Ingest top real Apache projects from Gold Lakehouse if available
+    # Ingest primary benchmark project (ZooKeeper) from Gold Lakehouse if available
     try:
         from backend.services.repo_scanner_service import RepoScannerService
-        for proj in ["zookeeper", "commons-io", "felix", "batik"]:
-            existing_apache = db.query(Repository).filter(Repository.name == proj).first()
-            if not existing_apache:
-                RepoScannerService.scan_github_repository(db, f"https://github.com/apache/{proj}")
+        existing_apache = db.query(Repository).filter(Repository.name == "zookeeper").first()
+        if not existing_apache:
+            RepoScannerService.scan_github_repository(db, "https://github.com/apache/zookeeper")
     except Exception as e:
-        print(f"[-] Optional Apache seed note: {e}")
+        print(f"[-] Benchmark seed note: {e}")
+
 
