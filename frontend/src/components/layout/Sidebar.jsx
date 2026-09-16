@@ -10,10 +10,12 @@ import {
   GitBranch,
   ShieldCheck,
   Zap,
+  Sliders,
 } from 'lucide-react';
 
 const navigation = [
   { name: 'Overview', to: '/dashboard', icon: LayoutDashboard, badge: null },
+  { name: 'Simulator & Gates', to: '/simulator', icon: Sliders, badge: 'ROI' },
   { name: 'Debt Matrix', to: '/priorities', icon: Grid, badge: '5D' },
   { name: 'Code Hotspots', to: '/hotspots', icon: Flame, badge: 'AST' },
   { name: 'Telemetry & ML', to: '/predictions', icon: Activity, badge: 'SZZ' },

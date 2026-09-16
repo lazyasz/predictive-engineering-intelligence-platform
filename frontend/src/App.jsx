@@ -9,6 +9,7 @@ import Hotspots from './pages/Hotspots';
 import FileIntelligence from './pages/FileIntelligence';
 import Copilot from './pages/Copilot';
 import DataQuality from './pages/DataQuality';
+import Simulator from './pages/Simulator';
 import AuthCallback from './pages/AuthCallback';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/simulator" element={<Simulator />} />
             <Route path="/debt" element={<TechnicalDebt />} />
             <Route path="/predictions" element={<Predictions />} />
             <Route path="/priorities" element={<Priorities />} />

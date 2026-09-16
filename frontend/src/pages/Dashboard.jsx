@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { 
   Activity, 
   Flame, 
@@ -14,7 +13,10 @@ import {
   ShieldCheck,
   Zap,
   Code2,
-  Cpu
+  Cpu,
+  Sliders,
+  FileText,
+  GitPullRequest
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useMetrics } from '../hooks/useMetrics';
@@ -22,6 +24,8 @@ import { useAuth } from '../context/AuthContext';
 import LoadingState from '../components/ui/LoadingState';
 import ErrorState from '../components/ui/ErrorState';
 import ScanRepoModal from '../components/common/ScanRepoModal';
+import RemediationRecipeModal from '../components/remediation/RemediationRecipeModal';
+import ExecutiveReportModal from '../components/reports/ExecutiveReportModal';
 import { 
   ResponsiveContainer, 
   AreaChart, 
@@ -40,6 +44,9 @@ export default function Dashboard() {
   const [scanModalOpen, setScanModalOpen] = useState(false);
   const [isExportingNotion, setIsExportingNotion] = useState(false);
   const [isPushingJira, setIsPushingJira] = useState(false);
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+  const [recipeModalOpen, setRecipeModalOpen] = useState(false);
+  const [selectedFileForRecipe, setSelectedFileForRecipe] = useState(null);
   const navigate = useNavigate();
 
   if (loading) return <LoadingState message="Connecting to AST telemetry & ML prediction mesh..." />;
@@ -107,6 +114,22 @@ export default function Dashboard() {
         </div>
 
         <div className="flex items-center gap-2.5 flex-wrap">
+          <button
+            onClick={() => setReportModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] text-xs font-bold transition border border-[#c5c8ba] shadow-xs active:scale-95 cursor-pointer"
+          >
+            <FileText className="w-4 h-4 text-[#43562b]" />
+            <span>Executive Audit PDF</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/simulator')}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] text-xs font-bold transition border border-[#c5c8ba] shadow-xs active:scale-95 cursor-pointer"
+          >
+            <Sliders className="w-4 h-4 text-[#43562b]" />
+            <span>What-If Simulator</span>
+          </button>
+
           <button
             onClick={() => setScanModalOpen(true)}
             className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] text-xs font-bold transition border border-[#c5c8ba] shadow-xs active:scale-95 cursor-pointer"
@@ -385,18 +408,29 @@ export default function Dashboard() {
                     <div className="flex items-center justify-end gap-2" onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={() => {
+                          setSelectedFileForRecipe(item);
+                          setRecipeModalOpen(true);
+                        }}
+                        className="px-2.5 py-1 bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-[#c5c8ba] cursor-pointer"
+                        title="AI Remediation Recipe"
+                      >
+                        <Sparkles className="w-3 h-3 text-[#43562b]" />
+                        <span>AI Recipe</span>
+                      </button>
+                      <button
+                        onClick={() => {
                           notify(`🚀 Dispatched Jira task for ${item.file}`);
                         }}
-                        className="px-2.5 py-1 bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-[#c5c8ba]"
+                        className="px-2.5 py-1 bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-[#c5c8ba] cursor-pointer"
                       >
                         <Layers className="w-3 h-3" />
                         <span>Jira</span>
                       </button>
                       <button
                         onClick={() => navigate('/copilot')}
-                        className="px-2.5 py-1 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-xs"
+                        className="px-2.5 py-1 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-xs cursor-pointer"
                       >
-                        <Sparkles className="w-3 h-3" />
+                        <Zap className="w-3 h-3" />
                         <span>Copilot</span>
                       </button>
                     </div>
@@ -408,7 +442,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Modal instance */}
+      {/* Modal instances */}
       <ScanRepoModal
         isOpen={scanModalOpen}
         onClose={() => setScanModalOpen(false)}
@@ -416,6 +450,17 @@ export default function Dashboard() {
           notify(`Analysis complete for ${res.repository || 'repository'}!`);
           refresh();
         }}
+      />
+
+      <RemediationRecipeModal
+        isOpen={recipeModalOpen}
+        onClose={() => setRecipeModalOpen(false)}
+        targetFile={selectedFileForRecipe}
+      />
+
+      <ExecutiveReportModal
+        isOpen={reportModalOpen}
+        onClose={() => setReportModalOpen(false)}
       />
     </div>
   );

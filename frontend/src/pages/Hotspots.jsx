@@ -7,6 +7,7 @@ import ErrorState from '../components/ui/ErrorState';
 import EmptyState from '../components/ui/EmptyState';
 import ScanRepoModal from '../components/common/ScanRepoModal';
 import JiraExportModal from '../components/integrations/JiraExportModal';
+import RemediationRecipeModal from '../components/remediation/RemediationRecipeModal';
 import { 
   Flame, 
   RefreshCw, 
@@ -19,7 +20,8 @@ import {
   SlidersHorizontal,
   ChevronRight,
   Zap,
-  Bot
+  Bot,
+  Sliders
 } from 'lucide-react';
 
 export default function Hotspots() {
@@ -30,6 +32,7 @@ export default function Hotspots() {
   const [selectedComplexityFilter, setSelectedComplexityFilter] = useState('all');
   const [scanModalOpen, setScanModalOpen] = useState(false);
   const [jiraModalOpen, setJiraModalOpen] = useState(false);
+  const [recipeModalOpen, setRecipeModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const { notify } = useAuth();
   const navigate = useNavigate();
@@ -305,15 +308,26 @@ export default function Hotspots() {
                   <td className="py-3 px-4 text-right" onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center justify-end gap-2">
                       <button
+                        onClick={() => {
+                          setSelectedItem(item);
+                          setRecipeModalOpen(true);
+                        }}
+                        className="px-2.5 py-1 bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-[#c5c8ba] cursor-pointer"
+                        title="AI Remediation Recipe"
+                      >
+                        <Sparkles className="w-3 h-3 text-[#43562b]" />
+                        <span>AI Recipe</span>
+                      </button>
+                      <button
                         onClick={() => handleOpenJira(item)}
-                        className="px-2.5 py-1 bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-[#c5c8ba]"
+                        className="px-2.5 py-1 bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-[#c5c8ba] cursor-pointer"
                       >
                         <Layers className="w-3 h-3" />
                         <span>Jira</span>
                       </button>
                       <button
                         onClick={() => navigate('/copilot')}
-                        className="px-2.5 py-1 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-xs"
+                        className="px-2.5 py-1 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-xs cursor-pointer"
                       >
                         <Bot className="w-3 h-3" />
                         <span>Copilot</span>
@@ -337,6 +351,12 @@ export default function Hotspots() {
         isOpen={jiraModalOpen}
         onClose={() => setJiraModalOpen(false)}
         component={selectedItem}
+      />
+
+      <RemediationRecipeModal
+        isOpen={recipeModalOpen}
+        onClose={() => setRecipeModalOpen(false)}
+        targetFile={selectedItem}
       />
     </div>
   );
