@@ -169,9 +169,14 @@ import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
-frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
+candidate_paths = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),
+    os.path.abspath(os.path.join(os.getcwd(), "frontend", "dist")),
+    "/app/frontend/dist",
+]
+frontend_dist = next((p for p in candidate_paths if os.path.exists(p)), None)
 
-if os.path.exists(frontend_dist):
+if frontend_dist and os.path.exists(frontend_dist):
     assets_dir = os.path.join(frontend_dist, "assets")
     if os.path.exists(assets_dir):
         app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
@@ -190,6 +195,7 @@ if os.path.exists(frontend_dist):
         if os.path.isfile(index_html):
             return FileResponse(index_html)
         raise HTTPException(status_code=404, detail="Frontend build not found")
+
 
 
 if __name__ == "__main__":
