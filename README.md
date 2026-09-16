@@ -1,4 +1,4 @@
-# Predictive Engineering Intelligence (PEI) Platform
+# DebtScope — Predictive Engineering Intelligence Platform
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-v0.115-009688.svg)](https://fastapi.tiangolo.com/)

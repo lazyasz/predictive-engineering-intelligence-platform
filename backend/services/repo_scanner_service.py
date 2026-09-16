@@ -95,7 +95,7 @@ class RepoScannerService:
         """Scans a live GitHub repo using GitHub REST API and file heuristic analysis."""
         headers = {
             "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "PEI-Platform/2.0"
+            "User-Agent": "DebtScope/1.0"
         }
         token = os.getenv("GITHUB_TOKEN")
         if token:
