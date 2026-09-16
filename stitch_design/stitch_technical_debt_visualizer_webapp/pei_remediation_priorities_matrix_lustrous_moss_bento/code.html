@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"primary":"#2d3f16","primary-container":"#43562b","on-primary":"#ffffff","on-primary-container":"#d3ebb2","primary-fixed":"#d3ebb2","primary-fixed-dim":"#b8ce98","on-primary-fixed":"#102000","on-primary-fixed-variant":"#3a4c22","secondary":"#556437","secondary-container":"#d3e4ac","on-secondary":"#ffffff","on-secondary-container":"#576639","secondary-fixed":"#d8e9b1","secondary-fixed-dim":"#bccd97","tertiary":"#353c26","tertiary-container":"#4b533c","on-tertiary":"#ffffff","on-tertiary-container":"#bec6a9","tertiary-fixed":"#dee6c8","tertiary-fixed-dim":"#c2caad","background":"#f4f6f0","surface":"#f4f6f0","surface-bright":"#f8faf6","surface-container-lowest":"#ffffff","surface-container-low":"#edf1e8","surface-container":"#e5ebe0","surface-container-high":"#dde5d7","surface-container-highest":"#d4dece","surface-dim":"#ccd6c4","on-surface":"#161e10","on-surface-variant":"#45483e","outline":"#75786d","outline-variant":"#c5c8ba","error":"#ba1a1a","error-container":"#ffdad6","on-error":"#ffffff","on-error-container":"#93000a","moss-dark":"#243212","moss-satin":"#3b4e26","moss-bright":"#5b723a"},"borderRadius":{"DEFAULT":"0.75rem","lg":"1.5rem","xl":"2rem","full":"9999px"},"spacing":{"margin":"2rem","gutter":"1.25rem","space-sm":"0.75rem","space-xl":"2.5rem","space-xs":"0.375rem","space-lg":"1.75rem","space-md":"1.25rem"},"fontFamily":{"headline-sm":["Hanken Grotesk","sans-serif"],"label-md":["JetBrains Mono","monospace"],"body-lg":["Hanken Grotesk","sans-serif"],"label-lg":["Hanken Grotesk","sans-serif"],"display-lg":["Hanken Grotesk","sans-serif"],"headline-md":["Hanken Grotesk","sans-serif"],"display-lg-mobile":["Hanken Grotesk","sans-serif"],"label-sm":["JetBrains Mono","monospace"],"body-sm":["Hanken Grotesk","sans-serif"],"metric-display":["Hanken Grotesk","sans-serif"],"headline-lg":["Hanken Grotesk","sans-serif"],"body-md":["Hanken Grotesk","sans-serif"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"500"}],"label-lg":["14px",{"lineHeight":"18px","fontWeight":"600"}],"display-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"display-lg-mobile":["30px",{"lineHeight":"36px","letterSpacing":"-0.025em","fontWeight":"800"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"metric-display":["32px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-low/95 backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(45,63,22,0.08)] border-b border-surface-container-highest/60"><div class="h-20 w-full px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><div class="h-9 w-9 rounded-xl bg-gradient-to-br from-primary-container via-moss-satin to-primary flex items-center justify-center shadow-md"><span class="material-symbols-outlined text-white text-xl">hub</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">PEI Platform</span><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Intelligence Mesh</span></div></div><div class="hidden xl:flex items-center bg-surface-container-highest/60 p-1.5 rounded-full shadow-[inset_0_2px_4px_0_rgba(45,63,22,0.06)]"><nav class="flex items-center gap-1" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_4px_12px_rgba(67,86,43,0.35)]"><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a aria-current="page" class="px-space-md py-space-xs rounded-full transition-colors bg-primary-container text-on-primary font-bold shadow-[0_4px_12px_rgba(67,86,43,0.35)]" data-path="remediation-matrix" href="#">Remediation Matrix</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="code-hotspots" href="#">Code Hotspots</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="ml-predictions" href="#">ML Predictions</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="ai-copilot" href="#">AI Copilot</a></nav></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden md:flex items-center bg-surface-container-highest/60 rounded-full px-space-sm py-1.5 shadow-[inset_0_2px_4px_0_rgba(45,63,22,0.06)]"><span class="material-symbols-outlined text-outline text-lg mr-2">search</span><span class="font-body-sm text-body-sm text-on-surface-variant mr-4">Search modules, telemetry...</span><span class="bg-surface-container-lowest font-label-sm text-label-sm text-outline px-2 py-0.5 rounded-full shadow-sm">⌘K</span></div><div class="hidden lg:flex items-center gap-1.5 bg-surface-container-highest/50 p-1 rounded-full"><span class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface shadow-[0_2px_6px_-1px_rgba(45,63,22,0.06)]"><span class="material-symbols-outlined text-sm text-secondary">shield</span>Google</span><span class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface shadow-[0_2px_6px_-1px_rgba(45,63,22,0.06)]"><span class="material-symbols-outlined text-sm text-primary-container">task_alt</span>Jira</span><span class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface shadow-[0_2px_6px_-1px_rgba(45,63,22,0.06)]"><span class="material-symbols-outlined text-sm text-moss-satin">sync</span>Notion</span></div><div class="flex items-center gap-2 bg-surface-container-lowest py-1 pl-1 pr-3 rounded-full shadow-[0_2px_6px_-1px_rgba(45,63,22,0.08)]"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-primary/20" src="https://lh3.googleusercontent.com/aida/AEtjO1UqYCT1pzqDmoFcxRcNc2g7lKrF1_WVPhHnJHHsImwQZa0yHp9VLBxQ_eCJsdQTxWnifBuxberq9XbtlBBkea9lATaUrUFKoyWlJ76krzml5YECugCWwIEUFSMQv1pSK7Gutcena3OUoBtodtsURw3P-uZXVeQcmzRRA-L7BIS2-sjCN5O_TCznk2SbskNgi8yEgRgBkE--I8rB60QxStHdjL4WwiVjekkZh_bs2ewF2FBkVbGWuibod83V"/><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-bold leading-tight">Dhruv Patel</span><span class="font-label-sm text-[10px] text-outline leading-tight">Lead Architect</span></div></div></div></div></header><aside class="fixed left-0 top-20 bottom-0 w-64 bg-surface-container-low/80 backdrop-blur-md z-40 flex flex-col justify-between p-space-md border-r border-surface-container-highest/60"><div class="space-y-6"><div class="px-2"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Workspaces</span></div><nav class="flex flex-col gap-1.5" data-active-classes="bg-surface-container-high text-on-surface font-bold rounded-2xl shadow-sm"><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-xl text-primary">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 transition-all bg-surface-container-high text-on-surface font-bold rounded-2xl shadow-sm" data-path="remediation-matrix" href="#"><span class="material-symbols-outlined text-xl text-primary-container">grid_view</span><span class="font-body-md text-body-md">Debt Matrix</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="code-hotspots" href="#"><span class="material-symbols-outlined text-xl text-secondary">local_fire_department</span><span class="font-body-md text-body-md">Hotspots</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="ml-predictions" href="#"><span class="material-symbols-outlined text-xl text-moss-satin">batch_prediction</span><span class="font-body-md text-body-md">Telemetry &amp; ML</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="ai-copilot" href="#"><span class="material-symbols-outlined text-xl text-primary-container">smart_toy</span><span class="font-body-md text-body-md">Copilot Refactor</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="integrations-vault" href="#"><span class="material-symbols-outlined text-xl text-outline">hub</span><span class="font-body-md text-body-md">Integrations</span></a></nav></div><div class="bg-surface-container-lowest p-space-sm rounded-2xl shadow-[0_8px_24px_-4px_rgba(45,63,22,0.08)] border border-surface-container-highest/60"><div class="flex items-center justify-between mb-1.5"><span class="font-label-sm text-label-sm text-on-surface font-bold">System Health</span><span class="bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 rounded-full font-label-sm text-[10px] font-bold">94.2%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-primary-container h-full rounded-full w-[94.2%]"></div></div><p class="font-body-sm text-[11px] text-outline mt-2 leading-tight">Dynamic AST triage verified across 42 microservices.</p></div></aside><div class="pl-64"><main class="relative w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full px-margin pb-16 space-y-space-lg">
+<!-- Top Hero Header Bar -->
+<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pt-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_rgba(67,86,43,0.6)] animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Let's Optimize Today</span>
+<span class="text-outline/40">•</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2.5 py-0.5 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-sm border border-surface-container-highest/80">
+<span class="material-symbols-outlined text-xs text-primary-container">calendar_today</span>
+          19 Tue, December
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+        Sprint 48 Remediation &amp; 5D Payoff Matrix
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Algorithmic payoff balance across 42 active services. Triage technical friction against revenue velocity.
+      </p>
+</div>
+<!-- Actions & Squad Switcher -->
+<div class="flex flex-wrap items-center gap-space-sm self-start lg:self-center">
+<!-- Squad Filter Pills -->
+<div class="flex items-center bg-surface-container-highest/70 p-1 rounded-full shadow-inner border border-surface-container-high/80">
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-sm transition-all hover:shadow">All Squads</button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all">Core Backend</button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all">Payments</button>
+<button class="px-3 py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all">Infra</button>
+</div>
+<!-- Action Buttons -->
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-lowest text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg shadow-sm border border-surface-container-highest/60 transition-all">
+<span class="material-symbols-outlined text-sm text-secondary">sync</span>
+        Sync to Notion
+      </button>
+<button class="flex items-center gap-2 px-5 py-2 rounded-full bg-primary-container hover:bg-moss-satin text-on-primary font-label-lg text-label-lg shadow-[0_4px_16px_rgba(45,63,22,0.3)] hover:shadow-[0_6px_20px_rgba(45,63,22,0.4)] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-base">rocket_launch</span>
+<span>Confirm &amp; Push to Jira (24 SP) ↗</span>
+</button>
+</div>
+</section>
+<!-- 4 Bento KPI Metric Capsules -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-gutter">
+<!-- KPI 1: Rich Olive/Moss Green Satin Hero -->
+<div class="relative overflow-hidden bg-gradient-to-br from-[#4d6332] via-[#384a24] to-[#253314] p-6 rounded-lg text-white shadow-[0_12px_28px_-6px_rgba(37,51,20,0.42)] flex flex-col justify-between border border-moss-bright/20">
+<div class="flex items-start justify-between relative z-10">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary-fixed font-bold flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed"></span>
+            Remediation Runway
+          </span>
+<div class="font-metric-display text-metric-display font-extrabold tracking-tight mt-1 text-white leading-none">
+            $48.2k <span class="font-body-lg text-body-lg text-primary-fixed/80 font-normal">/ 340h</span>
+</div>
+</div>
+<span class="p-2 rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/20">
+<span class="material-symbols-outlined text-white text-xl leading-none">trending_down</span>
+</span>
+</div>
+<!-- Wave visual + Badge -->
+<div class="pt-4 relative z-10 flex items-center justify-between">
+<div class="w-32 h-9">
+<svg class="w-full h-full stroke-primary-fixed fill-none drop-shadow-[0_2px_8px_rgba(211,235,178,0.35)]" preserveaspectratio="none" viewbox="0 0 100 30">
+<path d="M0,22 Q25,4 50,18 T100,8" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="100" cy="8" fill="#d3ebb2" r="3.5"></circle>
+</svg>
+</div>
+<span class="px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-white/15 backdrop-blur-md text-white font-bold border border-white/20">
+          -14.2% Debt Drag
+        </span>
+</div>
+<!-- Subtle satin highlights reminiscent of olive silk sheen -->
+<div class="absolute -right-8 -bottom-8 w-40 h-40 bg-gradient-to-tr from-transparent via-moss-bright/25 to-white/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -left-10 -top-10 w-36 h-36 bg-moss-bright/15 rounded-full blur-2xl pointer-events-none"></div>
+</div>
+<!-- KPI 2: Quick Wins Ready -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.07)] border border-surface-container-highest/60 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Quick Wins Ready</span>
+<div class="font-metric-display text-metric-display text-on-surface font-extrabold tracking-tight mt-1">
+            18 <span class="font-headline-sm text-headline-sm text-outline font-normal">Modules</span>
+</div>
+</div>
+<span class="p-2 rounded-full bg-secondary-fixed/60 text-primary">
+<span class="material-symbols-outlined text-xl">bolt</span>
+</span>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<div class="flex items-end gap-1.5 h-7">
+<span class="w-2 bg-primary-container h-3 rounded-full"></span>
+<span class="w-2 bg-primary-container h-5 rounded-full"></span>
+<span class="w-2 bg-primary-container h-7 rounded-full"></span>
+<span class="w-2 bg-primary-container h-4 rounded-full"></span>
+<span class="w-2 bg-primary-container h-6 rounded-full"></span>
+<span class="w-2 bg-primary-fixed h-2 rounded-full"></span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-primary font-bold block">80 SP Total</span>
+<span class="font-body-sm text-body-sm text-outline">Max ROI Payoff</span>
+</div>
+</div>
+</div>
+<!-- KPI 3: Strategic Refactor -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.07)] border border-surface-container-highest/60 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Strategic Refactor</span>
+<div class="font-metric-display text-metric-display text-on-surface font-extrabold tracking-tight mt-1">
+            26 <span class="font-headline-sm text-headline-sm text-outline font-normal">Modules</span>
+</div>
+</div>
+<span class="p-2 rounded-full bg-tertiary-fixed text-tertiary">
+<span class="material-symbols-outlined text-xl">account_tree</span>
+</span>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<div class="w-24 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full w-3/4"></div>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-tertiary font-bold block">High Leverage</span>
+<span class="font-body-sm text-body-sm text-outline">Architecture Core</span>
+</div>
+</div>
+</div>
+<!-- KPI 4: Debt Traps Flagged -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.07)] border border-surface-container-highest/60 flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Debt Traps Flagged</span>
+<div class="font-metric-display text-metric-display text-on-surface font-extrabold tracking-tight mt-1">
+            6 <span class="font-headline-sm text-headline-sm text-error font-normal">High Sinks</span>
+</div>
+</div>
+<span class="p-2 rounded-full bg-error-container text-error">
+<span class="material-symbols-outlined text-xl">warning</span>
+</span>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<span class="px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container font-bold">
+          Quarantine Advised
+        </span>
+<span class="font-body-sm text-body-sm text-outline">&gt;80 SP Sink / Low Value</span>
+</div>
+</div>
+</section>
+<!-- Main Asymmetric Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- LEFT COLUMN (8 cols): 5D Matrix + Ranked Queue Table -->
+<div class="lg:col-span-8 space-y-space-lg">
+<!-- Interactive 5D Priority Payoff Matrix -->
+<section class="bg-surface-container-lowest p-space-md sm:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.08)] border border-surface-container-highest/60 space-y-4">
+<!-- Matrix Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-md text-headline-md text-on-surface">5D Priority Payoff Matrix</h2>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-2.5 py-0.5 rounded-full font-label-sm text-label-sm font-bold border border-primary-fixed-dim">v3.4 Model</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Impact vs Effort mapped with Telemetry, Churn, Complexity, and Failure Cascade weighting.</p>
+</div>
+<!-- Quadrant Color Legend -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-medium border border-surface-container-highest">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> Quick Wins
+            </span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-medium border border-surface-container-highest">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Strategic
+            </span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-medium border border-surface-container-highest">
+<span class="w-2 h-2 rounded-full bg-outline"></span> Deprioritized
+            </span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-medium border border-surface-container-highest">
+<span class="w-2 h-2 rounded-full bg-error"></span> Debt Traps
+            </span>
+</div>
+</div>
+<!-- 2x2 Matrix Container -->
+<div class="relative bg-surface-container-low/60 rounded-2xl p-4 sm:p-6 overflow-hidden shadow-inner border border-surface-container-high">
+<!-- Axis Labels -->
+<div class="absolute -left-7 top-1/2 -translate-y-1/2 -rotate-90 font-label-sm text-label-sm tracking-widest text-outline uppercase select-none pointer-events-none">
+            Business Impact ↑
+          </div>
+<div class="absolute bottom-1.5 left-1/2 -translate-x-1/2 font-label-sm text-label-sm tracking-widest text-outline uppercase select-none pointer-events-none">
+            Remediation Effort (Story Points) →
+          </div>
+<!-- 4 Grid Quadrants -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[360px]">
+<!-- Quadrant 1: Top-Left (Quick Wins) -->
+<div class="relative rounded-2xl bg-secondary-fixed/30 border border-secondary-fixed/50 p-4 flex flex-col justify-between transition-all hover:bg-secondary-fixed/40">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-primary uppercase tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm text-primary-container">offline_bolt</span>
+                  Quick Wins (High Impact / Low Effort)
+                </span>
+<span class="font-label-sm text-label-sm text-primary bg-primary-fixed/80 px-2 py-0.5 rounded-full font-bold">ROI &gt; 4.2x</span>
+</div>
+<!-- Interactive Node Chips in Q1 -->
+<div class="flex flex-wrap gap-2 py-6">
+<!-- Node 1 -->
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all border border-primary-fixed/60">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-mono text-xs font-bold text-on-surface">TokenManager.ts</span>
+<span class="font-label-sm text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 rounded-full font-bold">91.2</span>
+<!-- Tooltip -->
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col bg-on-surface text-surface-container-lowest p-2 rounded-xl text-xs w-48 shadow-xl pointer-events-none z-30">
+<span class="font-bold">TokenManager.ts</span>
+<span class="text-surface-dim text-[11px]">Effort: 3 SP • Save: 14h/sprint</span>
+<span class="text-primary-fixed text-[10px] mt-1">High blast-radius mitigation</span>
+</div>
+</div>
+<!-- Node 2 -->
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all border border-primary-fixed/60">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-mono text-xs font-bold text-on-surface">SessionCache.ts</span>
+<span class="font-label-sm text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 rounded-full font-bold">88.0</span>
+</div>
+<!-- Node 3 -->
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all border border-primary-fixed/60">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-mono text-xs font-bold text-on-surface">OrderValidator.py</span>
+<span class="font-label-sm text-[10px] bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 rounded-full font-bold">79.4</span>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-primary/80 italic">Immediate Sprint Candidate: High developer leverage.</div>
+</div>
+<!-- Quadrant 2: Top-Right (Strategic Refactor) -->
+<div class="relative rounded-2xl bg-tertiary-fixed/30 border border-tertiary-fixed/50 p-4 flex flex-col justify-between transition-all hover:bg-tertiary-fixed/45">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-tertiary uppercase tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">architecture</span>
+                  Strategic (High Impact / High Effort)
+                </span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary-fixed-dim/50 px-2 py-0.5 rounded-full font-bold">Sustained Velocity</span>
+</div>
+<!-- Interactive Node Chips in Q2 -->
+<div class="flex flex-wrap gap-2 py-6">
+<!-- Payment Gateway Node -->
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all ring-2 ring-primary-container">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-mono text-xs font-bold text-on-surface">PaymentGateway.py</span>
+<span class="font-label-sm text-[10px] bg-primary-container text-white px-1.5 py-0.5 rounded-full font-bold">96.4</span>
+<!-- Tooltip -->
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col bg-on-surface text-surface-container-lowest p-2.5 rounded-xl text-xs w-52 shadow-xl pointer-events-none z-30">
+<span class="font-bold text-primary-fixed">PaymentGateway.py</span>
+<span class="text-surface-dim text-[11px]">Effort: 8 SP • Risk: 94% Critical</span>
+<span class="text-primary-fixed-dim text-[10px] mt-1">Single Point of Failure in checkout pipeline</span>
+</div>
+</div>
+<!-- Tax Engine Node -->
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-2 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all border border-tertiary-fixed/70">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-mono text-xs font-bold text-on-surface">TaxEngine.go</span>
+<span class="font-label-sm text-[10px] bg-tertiary-fixed text-on-tertiary-fixed-variant px-1.5 py-0.5 rounded-full font-bold">82.6</span>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-on-tertiary-fixed-variant italic">Architectural Spine: Requires multi-sprint staged migration.</div>
+</div>
+<!-- Quadrant 3: Bottom-Left (Deprioritized) -->
+<div class="relative rounded-2xl bg-surface-container-high/60 border border-surface-container-highest p-4 flex flex-col justify-between transition-all hover:bg-surface-container-high">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-outline uppercase tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">low_priority</span>
+                  Deprioritized (Low Impact / Low Effort)
+                </span>
+<span class="font-label-sm text-label-sm text-outline bg-surface-dim px-2 py-0.5 rounded-full font-bold">Backlog Triage</span>
+</div>
+<!-- Node Chips in Q3 -->
+<div class="flex flex-wrap gap-2 py-6">
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-1.5 rounded-full shadow-sm hover:shadow transition-all opacity-80 hover:opacity-100">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-mono text-xs text-on-surface">MetricsSanitizer.go</span>
+<span class="font-label-sm text-[10px] bg-surface-container text-outline px-1.5 py-0.5 rounded-full">41.3</span>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-outline italic">Maintenance Window: Bundle into minor utility patch releases.</div>
+</div>
+<!-- Quadrant 4: Bottom-Right (Debt Traps) -->
+<div class="relative rounded-2xl bg-error-container/25 border border-error-container/40 p-4 flex flex-col justify-between transition-all hover:bg-error-container/35">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-error uppercase tracking-wide flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">dangerous</span>
+                  Debt Traps (Low Impact / High Effort)
+                </span>
+<span class="font-label-sm text-label-sm text-error bg-error-container px-2 py-0.5 rounded-full font-bold">Quarantine</span>
+</div>
+<!-- Node Chips in Q4 -->
+<div class="flex flex-wrap gap-2 py-6">
+<div class="group relative cursor-pointer flex items-center gap-2 bg-surface-container-lowest px-3 py-1.5 rounded-full shadow-sm hover:shadow transition-all">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-mono text-xs font-semibold text-error line-through">LegacyXmlParser.java</span>
+<span class="font-label-sm text-[10px] bg-error-container text-on-error-container px-1.5 py-0.5 rounded-full font-bold">28.1</span>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-error/80 italic">Resource Sink: High refactor churn with negligible business lift.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ranked 5D Remediation Queue Table -->
+<section class="bg-surface-container-lowest p-space-md sm:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.08)] border border-surface-container-highest/60 space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Ranked 5D Remediation Queue</h2>
+<p class="font-body-sm text-body-sm text-outline">Selected items automatically packaged into Sprint 48 Jira backlog.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold bg-primary-fixed border border-primary-fixed-dim px-3 py-1 rounded-full self-start sm:self-auto">
+            4 of 5 Selected (24 SP)
+          </span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[700px]">
+<thead>
+<tr class="bg-surface-container-low/60 rounded-xl text-outline font-label-sm text-label-sm uppercase">
+<th class="py-3 px-3 rounded-l-xl w-10 text-center">Sel</th>
+<th class="py-3 px-2 w-12 text-center">Rank</th>
+<th class="py-3 px-4">Component Path</th>
+<th class="py-3 px-3">5D Score</th>
+<th class="py-3 px-3">Tech Risk</th>
+<th class="py-3 px-3">Effort</th>
+<th class="py-3 px-3">Quadrant</th>
+<th class="py-3 px-3 rounded-r-xl text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md divide-y-0 space-y-2">
+<!-- Row 1: PaymentGateway -->
+<tr class="group hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-3 text-center">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary-container cursor-pointer focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-3.5 px-2 text-center font-bold text-primary">#1</td>
+<td class="py-3.5 px-4 font-mono text-xs font-semibold text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-primary-container">data_object</span>
+<span>pkg/billing/PaymentGateway.py</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-bold text-primary">96.4</span>
+<div class="w-14 bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-primary-container h-full rounded-full w-[96%]"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-bold bg-error-container text-on-error-container">
+                    94% Critical
+                  </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">8 SP <span class="text-outline text-xs font-normal">(32h)</span></td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full font-label-sm text-[11px] bg-tertiary-fixed text-on-tertiary-fixed font-bold">
+                    Strategic
+                  </span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all inline-flex items-center gap-1 border border-surface-container-highest">
+<span>Export</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: TokenManager -->
+<tr class="group hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-3 text-center">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary-container cursor-pointer focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-3.5 px-2 text-center font-bold text-outline">#2</td>
+<td class="py-3.5 px-4 font-mono text-xs font-semibold text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-secondary">security</span>
+<span>pkg/auth/TokenManager.ts</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface">91.2</span>
+<div class="w-14 bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-secondary h-full rounded-full w-[91%]"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-bold bg-secondary-fixed text-on-secondary-fixed-variant">
+                    76% High
+                  </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">3 SP <span class="text-outline text-xs font-normal">(12h)</span></td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full font-label-sm text-[11px] bg-primary-fixed text-on-primary-fixed font-bold">
+                    Quick Win
+                  </span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all inline-flex items-center gap-1 border border-surface-container-highest">
+<span>Export</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: SessionCache -->
+<tr class="group hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-3 text-center">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary-container cursor-pointer focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-3.5 px-2 text-center font-bold text-outline">#3</td>
+<td class="py-3.5 px-4 font-mono text-xs font-semibold text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-tertiary">memory</span>
+<span>pkg/cache/SessionCache.ts</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface">88.0</span>
+<div class="w-14 bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-tertiary-container h-full rounded-full w-[88%]"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-bold bg-surface-container-high text-on-surface-variant">
+                    68% Med
+                  </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">5 SP <span class="text-outline text-xs font-normal">(20h)</span></td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full font-label-sm text-[11px] bg-primary-fixed text-on-primary-fixed font-bold">
+                    Quick Win
+                  </span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all inline-flex items-center gap-1 border border-surface-container-highest">
+<span>Export</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: TaxEngine -->
+<tr class="group hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-3 text-center">
+<input checked="" class="w-4 h-4 rounded text-primary accent-primary-container cursor-pointer focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-3.5 px-2 text-center font-bold text-outline">#4</td>
+<td class="py-3.5 px-4 font-mono text-xs font-semibold text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-tertiary">calculate</span>
+<span>pkg/tax/TaxEngine.go</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface">82.6</span>
+<div class="w-14 bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-tertiary h-full rounded-full w-[82%]"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-bold bg-secondary-fixed text-on-secondary-fixed-variant">
+                    88% High
+                  </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">8 SP <span class="text-outline text-xs font-normal">(32h)</span></td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full font-label-sm text-[11px] bg-tertiary-fixed text-on-tertiary-fixed font-bold">
+                    Strategic
+                  </span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-2.5 py-1 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-all inline-flex items-center gap-1 border border-surface-container-highest">
+<span>Export</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: LegacyXmlParser (Unchecked / Trap) -->
+<tr class="group hover:bg-surface-container-low/40 transition-colors opacity-70">
+<td class="py-3.5 px-3 text-center">
+<input class="w-4 h-4 rounded text-primary accent-primary-container cursor-pointer focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-3.5 px-2 text-center font-bold text-outline">#5</td>
+<td class="py-3.5 px-4 font-mono text-xs text-outline line-through">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base text-outline">code_off</span>
+<span>pkg/legacy/LegacyXmlParser.java</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2">
+<span class="font-bold text-outline">28.1</span>
+<div class="w-14 bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-outline h-full rounded-full w-[28%]"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-bold bg-surface-container-high text-outline">
+                    22% Low
+                  </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-outline">21 SP <span class="text-outline text-xs font-normal">(84h)</span></td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full font-label-sm text-[11px] bg-error-container text-on-error-container font-bold">
+                    Trap (Avoid)
+                  </span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<span class="text-xs text-error font-medium px-2 py-1">Quarantined</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN (4 cols): Velocity, AI Copilot, Jira Payload -->
+<div class="lg:col-span-4 space-y-space-lg">
+<!-- Daily Debt Velocity & Sprint Capacity -->
+<section class="bg-surface-container-lowest p-space-md sm:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.08)] border border-surface-container-highest/60 space-y-5">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Sprint 48 Capacity</h3>
+<span class="material-symbols-outlined text-primary-container">speed</span>
+</div>
+<!-- Mini Calendar Strip -->
+<div class="grid grid-cols-7 gap-1 bg-surface-container-low/70 p-1.5 rounded-2xl text-center border border-surface-container-high">
+<div class="py-1.5 rounded-xl">
+<span class="block text-[10px] text-outline uppercase font-bold">Su</span>
+<span class="text-xs font-semibold text-on-surface-variant">21</span>
+</div>
+<div class="py-1.5 rounded-xl">
+<span class="block text-[10px] text-outline uppercase font-bold">Mo</span>
+<span class="text-xs font-semibold text-on-surface-variant">22</span>
+</div>
+<div class="py-1.5 rounded-xl bg-primary-container text-white font-bold shadow-sm ring-1 ring-primary">
+<span class="block text-[10px] uppercase text-primary-fixed">Tu</span>
+<span class="text-xs">23</span>
+</div>
+<div class="py-1.5 rounded-xl">
+<span class="block text-[10px] text-outline uppercase font-bold">We</span>
+<span class="text-xs font-semibold text-on-surface-variant">24</span>
+</div>
+<div class="py-1.5 rounded-xl">
+<span class="block text-[10px] text-outline uppercase font-bold">Th</span>
+<span class="text-xs font-semibold text-on-surface-variant">25</span>
+</div>
+<div class="py-1.5 rounded-xl">
+<span class="block text-[10px] text-outline uppercase font-bold">Fr</span>
+<span class="text-xs font-semibold text-on-surface-variant">26</span>
+</div>
+<div class="py-1.5 rounded-xl">
+<span class="block text-[10px] text-outline uppercase font-bold">Sa</span>
+<span class="text-xs font-semibold text-on-surface-variant">27</span>
+</div>
+</div>
+<!-- Radial Multi-Layer Gauge -->
+<div class="flex flex-col items-center justify-center pt-2">
+<div class="relative w-44 h-44 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Base Track -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#dde5d7" stroke-width="9"></circle>
+<!-- Quick Wins Segment (Deep Olive Moss) -->
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#43562b" stroke-dasharray="251.2" stroke-dashoffset="120" stroke-linecap="round" stroke-width="9"></circle>
+<!-- Strategic Segment (Muted Earthy Slate / Charcoal) -->
+<circle cx="50" cy="50" fill="transparent" opacity="0.85" r="40" stroke="#353c26" stroke-dasharray="251.2" stroke-dashoffset="180" stroke-linecap="round" stroke-width="9"></circle>
+</svg>
+<div class="absolute flex flex-col items-center text-center">
+<span class="font-metric-display text-metric-display font-extrabold text-on-surface leading-none">764</span>
+<span class="font-label-sm text-label-sm text-outline uppercase mt-0.5">/ 1,500 SP Target</span>
+</div>
+</div>
+<div class="flex items-center gap-4 text-xs font-medium text-on-surface-variant mt-2">
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span> Quick Wins (42%)
+            </span>
+<span class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span> Strategic (38%)
+            </span>
+</div>
+</div>
+<!-- Capacity Breakdown Progress Meters -->
+<div class="space-y-2.5 pt-2">
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">Core Backend Squad</span>
+<span class="text-primary font-bold">16 / 20 SP</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-[80%]"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">Payments Infrastructure</span>
+<span class="text-tertiary font-bold">8 / 12 SP</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full w-[66%]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Refactoring Prescription Card -->
+<section class="bg-gradient-to-b from-surface-container-lowest to-surface-container-low p-space-md sm:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.08)] border border-surface-container-highest/60 space-y-4 relative overflow-hidden">
+<div class="flex items-start gap-3 relative z-10">
+<!-- Tactile Satin Orb Emblem -->
+<div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary via-moss-satin to-primary-fixed-dim shadow-[0_4px_14px_rgba(45,63,22,0.35)] flex items-center justify-center shrink-0 border border-primary-fixed/40">
+<span class="material-symbols-outlined text-white text-2xl">auto_awesome</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Copilot Prescription</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">PaymentGateway.py</h3>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant relative z-10">
+          Cyclomatic complexity index is 38. AST reveals cascading try-catch anti-patterns in retry dispatch.
+        </p>
+<!-- Prescription Strategy Capsule -->
+<div class="bg-surface-container-lowest p-3 rounded-2xl shadow-sm border border-surface-container-high relative z-10 space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-tertiary">Strategy: Circuit Breaker Isolation</span>
+<span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary-fixed-dim">+32% Resilience</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">
+            Splits sync auth queries into asynchronous Redis lease reservations.
+          </p>
+</div>
+<!-- Quick AI Actions -->
+<div class="flex flex-col gap-2 relative z-10 pt-1">
+<button class="w-full flex items-center justify-between px-4 py-2.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-all border border-surface-container-highest">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary-container">difference</span>
+<span>Inspect Generated AST Diff</span>
+</span>
+<span class="material-symbols-outlined text-xs text-outline">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-4 py-2.5 rounded-full bg-primary-fixed hover:bg-primary-fixed-dim text-on-primary-fixed font-label-md text-label-md font-bold transition-all border border-primary-fixed-dim shadow-sm">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">terminal</span>
+<span>Auto-draft Migration PR</span>
+</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Live Jira Sprint Payload Card -->
+<section class="bg-surface-container-lowest p-space-md sm:p-space-lg rounded-lg shadow-[0_8px_24px_-4px_rgba(45,63,22,0.08)] border border-surface-container-highest/60 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-xl">confirmation_number</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Jira Sprint Payload</h3>
+</div>
+<span class="bg-surface-container-high text-on-surface font-mono text-xs px-2 py-0.5 rounded-full border border-surface-container-highest">SPRINT-48</span>
+</div>
+<div class="space-y-3 bg-surface-container-low/50 p-3.5 rounded-2xl border border-surface-container-high/60">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-outline">Total Committed:</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">24 Story Points</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-outline">Engineering Effort:</span>
+<span class="font-label-lg text-label-lg font-bold text-on-surface">96 Dev Hours</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-outline">Estimated Debt Drop:</span>
+<span class="font-label-lg text-label-lg font-bold text-primary">-14.2%</span>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-1.5 border border-surface-container-highest">
+<span class="material-symbols-outlined text-sm text-primary-container">call_split</span>
+<span>Review Story Splitting (3 Epics)</span>
+</button>
+</section>
+</div>
+</div>
+</div></main></div></body></html>

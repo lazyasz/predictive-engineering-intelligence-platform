@@ -13,6 +13,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from backend.config import settings
 from backend.database.connection import init_db, SessionLocal
 from backend.services.seed_service import seed_database
+from backend.services.storage_client import R2StorageClient
 from backend.api.routes import api_router
 
 
@@ -20,12 +21,19 @@ from backend.api.routes import api_router
 async def lifespan(app: FastAPI):
     """
     Application lifespan manager.
-    Executes database table creation and demo data seeding on startup.
+    Syncs R2 cloud storage artifacts, initializes database schema, and seeds demo data.
     """
-    # Initialize DB schema
+    # 1. Sync Cloudflare R2 / S3 Lakehouse artifacts if configured
+    try:
+        r2_client = R2StorageClient()
+        r2_client.sync_startup_artifacts()
+    except Exception as e:
+        print(f"[-] R2 startup sync note: {e}")
+
+    # 2. Initialize DB schema
     init_db()
 
-    # Seed demo data for out-of-the-box demonstration
+    # 3. Seed demo and Apache Lakehouse data for out-of-the-box demonstration
     db = SessionLocal()
     try:
         seed_database(db)
@@ -33,6 +41,7 @@ async def lifespan(app: FastAPI):
         db.close()
 
     yield
+
 
 
 app = FastAPI(

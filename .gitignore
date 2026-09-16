@@ -14,11 +14,15 @@ dist/
 dist_submission/
 .turbo/
 
-# Database
+# Database & Datasets
 *.db
 *.sqlite
 *.sqlite3
+external_dataset/
+data/lakehouse/bronze/
+data/lakehouse/silver/
 
 # OS files
 .DS_Store
 Thumbs.db
+

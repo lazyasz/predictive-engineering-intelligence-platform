@@ -8,6 +8,7 @@ import Priorities from './pages/Priorities';
 import Hotspots from './pages/Hotspots';
 import FileIntelligence from './pages/FileIntelligence';
 import Copilot from './pages/Copilot';
+import DataQuality from './pages/DataQuality';
 import AuthCallback from './pages/AuthCallback';
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/predictions" element={<Predictions />} />
             <Route path="/priorities" element={<Priorities />} />
             <Route path="/hotspots" element={<Hotspots />} />
+            <Route path="/data-quality" element={<DataQuality />} />
             <Route path="/files/:id" element={<FileIntelligence />} />
             <Route path="/copilot" element={<Copilot />} />
           </Route>
@@ -34,3 +36,4 @@ export default function App() {
     </AuthProvider>
   );
 }
+

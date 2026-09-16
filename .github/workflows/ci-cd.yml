@@ -1,0 +1,62 @@
+name: PEI Platform CI/CD & Medallion Data Quality Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    # Nightly cron at 02:00 UTC for automated lakehouse audit & model retraining
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  data-quality-and-tests:
+    name: Medallion Quality Gates & Backend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Medallion Data Quality Gates (Fail on Breach)
+        run: |
+          python data_pipeline/src/data_pipeline/quality_gates.py
+
+      - name: Run Backend Pytest Suite
+        run: |
+          pytest backend/tests ml_engine/tests -v
+
+  frontend-build:
+    name: Frontend Build & Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Frontend Dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build Vite Production Bundle
+        working-directory: frontend
+        run: npm run build

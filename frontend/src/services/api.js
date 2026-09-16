@@ -187,3 +187,7 @@ export async function createNotionReport(payload) {
   return data;
 }
 
+export { apiClient };
+export default apiClient;
+
+

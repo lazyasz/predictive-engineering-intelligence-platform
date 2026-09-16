@@ -1,0 +1,4 @@
+{
+  "name": "ralph-loop",
+  "description": "Ralph Loop - Long-running autonomous agent loop framework with continuous evaluation, self-healing, and convergence guardrails."
+}

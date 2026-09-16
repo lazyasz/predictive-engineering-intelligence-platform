@@ -88,3 +88,25 @@ def add_file_to_repository(repo_id: int, file_in: SourceFileCreate, db: Session 
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Repository with id {repo_id} not found")
     file_in.repository_id = repo_id
     return DataService.get_or_create_file(db, file_in)
+
+
+from pydantic import BaseModel, Field
+
+class RepoScanRequest(BaseModel):
+    url: str = Field(..., description="GitHub repository URL or Apache project key (e.g., https://github.com/apache/zookeeper)")
+
+
+@router.post("/scan", summary="Scan GitHub Repository or Ingest Apache Lakehouse Project")
+def scan_repository(payload: RepoScanRequest, db: Session = Depends(get_db)):
+    """
+    Scans any public GitHub repository or pre-loaded Apache project,
+    extracts code complexity & debt metrics, applies real ML defect models,
+    computes 5D priority scores, and returns full health analysis.
+    """
+    from backend.services.repo_scanner_service import RepoScannerService
+    try:
+        result = RepoScannerService.scan_github_repository(db, payload.url)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+

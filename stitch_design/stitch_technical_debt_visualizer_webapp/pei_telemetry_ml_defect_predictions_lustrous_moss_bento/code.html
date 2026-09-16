@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#f7ece2","primary":"#ae3115","on-primary-fixed":"#3d0600","surface-container-low":"#fdf2e7","tertiary":"#6d3bd7","inverse-primary":"#ffb4a3","background":"#fff8f4","error":"#ba1a1a","on-secondary-fixed-variant":"#653e00","outline":"#8d716a","on-surface":"#201b15","surface-container-highest":"#ece1d7","surface-variant":"#ece1d7","outline-variant":"#e1bfb8","on-secondary-container":"#684000","primary-fixed":"#ffdad2","tertiary-fixed-dim":"#d0bcff","secondary-container":"#fea619","on-error":"#ffffff","primary-fixed-dim":"#ffb4a3","on-tertiary-fixed":"#23005c","tertiary-container":"#a885ff","primary-container":"#ff6b4a","on-primary-container":"#661000","surface-container-high":"#f2e6dc","inverse-surface":"#352f29","on-tertiary-fixed-variant":"#5516be","on-background":"#201b15","tertiary-fixed":"#e9ddff","on-primary":"#ffffff","surface-dim":"#e3d8ce","on-primary-fixed-variant":"#8c1900","inverse-on-surface":"#faefe5","on-surface-variant":"#59413c","surface-tint":"#ae3115","surface":"#fff8f4","on-error-container":"#93000a","on-tertiary-container":"#3e0095","error-container":"#ffdad6","on-secondary":"#ffffff","surface-container-lowest":"#ffffff","on-tertiary":"#ffffff","surface-bright":"#fff8f4","secondary":"#855300","on-secondary-fixed":"#2a1700","secondary-fixed":"#ffddb8","secondary-fixed-dim":"#ffb95f"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"margin":"2rem","gutter":"1.25rem","space-sm":"0.75rem","space-xl":"2.5rem","space-xs":"0.375rem","space-lg":"1.75rem","space-md":"1.25rem"},"fontFamily":{"headline-sm":["Plus Jakarta Sans"],"label-md":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"display-lg-mobile":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"body-sm":["Plus Jakarta Sans"],"metric-display":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"600"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"500"}],"label-lg":["14px",{"lineHeight":"18px","fontWeight":"600"}],"display-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.015em","fontWeight":"700"}],"display-lg-mobile":["30px",{"lineHeight":"36px","letterSpacing":"-0.025em","fontWeight":"800"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.02em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"metric-display":["32px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-low/95 backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(175,155,140,0.15)]"><div class="h-20 w-full px-space-md flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><div class="w-8 h-8 rounded-full bg-[#43562b] flex items-center justify-center text-white shadow-sm"><span class="material-symbols-outlined text-lg">hub</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">PEI Platform</span><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Intelligence Mesh</span></div></div><div class="hidden xl:flex items-center bg-surface-container-highest/60 p-1.5 rounded-full shadow-[inset_0_2px_4px_0_rgba(74,62,53,0.06)]"><nav class="flex items-center gap-1" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_4px_12px_rgba(255,107,74,0.35)]"><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="dashboard" href="#">Dashboard</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="remediation-matrix" href="#">Remediation Matrix</a><a aria-current="page" class="px-space-md py-space-xs rounded-full transition-colors bg-primary-container text-on-primary font-bold shadow-[0_4px_12px_rgba(255,107,74,0.35)]" data-path="code-hotspots" href="#" style="background-color: rgb(67, 86, 43); color: rgb(255, 255, 255); box-shadow: rgba(45, 63, 22, 0.35) 0px 4px 14px;">Code Hotspots</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="ml-predictions" href="#">ML Predictions</a><a class="px-space-md py-space-xs rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="ai-copilot" href="#">AI Copilot</a></nav></div><div class="flex items-center gap-space-sm shrink-0"><div class="hidden md:flex items-center bg-surface-container-highest/60 rounded-full px-space-sm py-1.5 shadow-[inset_0_2px_4px_0_rgba(74,62,53,0.06)]"><span class="material-symbols-outlined text-outline text-lg mr-2">search</span><span class="font-body-sm text-body-sm text-on-surface-variant mr-4">Search modules, telemetry...</span><span class="bg-surface-container-lowest font-label-sm text-label-sm text-outline px-2 py-0.5 rounded-full shadow-sm">⌘K</span></div><div class="hidden lg:flex items-center gap-1.5 bg-surface-container-highest/40 p-1 rounded-full"><span class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface shadow-[0_2px_6px_-1px_rgba(175,155,140,0.08)]"><span class="material-symbols-outlined text-sm text-secondary">shield</span>Google</span><span class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface shadow-[0_2px_6px_-1px_rgba(175,155,140,0.08)]"><span class="material-symbols-outlined text-sm text-primary" style="color: rgb(67, 86, 43);">task_alt</span>Jira</span><span class="flex items-center gap-1 bg-surface-container-lowest px-2.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface shadow-[0_2px_6px_-1px_rgba(175,155,140,0.08)]"><span class="material-symbols-outlined text-sm text-tertiary">sync</span>Notion</span></div><div class="flex items-center gap-2 bg-surface-container-lowest py-1 pl-1 pr-3 rounded-full shadow-[0_2px_6px_-1px_rgba(175,155,140,0.12)]"><div class="w-8 h-8 rounded-full bg-[#43562b] flex items-center justify-center text-white shadow-sm"><span class="material-symbols-outlined text-lg">hub</span></div><div class="flex flex-col text-left"><span class="font-label-sm text-label-sm text-on-surface font-bold leading-tight">Dhruv Patel</span><span class="font-label-sm text-[10px] text-outline leading-tight">Lead Architect</span></div></div></div></div></header><aside class="fixed left-0 top-20 bottom-0 w-64 bg-surface-container-low/80 backdrop-blur-md z-40 flex flex-col justify-between p-space-md"><div class="space-y-6"><div class="px-2"><span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Workspaces</span></div><nav class="flex flex-col gap-1.5" data-active-classes="bg-surface-container-high text-on-surface font-bold rounded-2xl shadow-sm"><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="dashboard" href="#"><span class="material-symbols-outlined text-xl text-primary">space_dashboard</span><span class="font-body-md text-body-md">Overview</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="remediation-matrix" href="#"><span class="material-symbols-outlined text-xl text-secondary">grid_view</span><span class="font-body-md text-body-md">Debt Matrix</span></a><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 transition-all bg-surface-container-high text-on-surface font-bold rounded-2xl shadow-sm" data-path="code-hotspots" href="#" style="background-color: rgb(67, 86, 43); color: rgb(255, 255, 255); box-shadow: rgba(45, 63, 22, 0.35) 0px 4px 14px;"><span class="material-symbols-outlined text-xl text-primary-container" style="color: rgb(67, 86, 43);">local_fire_department</span><span class="font-body-md text-body-md">Hotspots</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="ml-predictions" href="#"><span class="material-symbols-outlined text-xl text-tertiary">batch_prediction</span><span class="font-body-md text-body-md">Telemetry &amp; ML</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="ai-copilot" href="#"><span class="material-symbols-outlined text-xl text-tertiary-container">smart_toy</span><span class="font-body-md text-body-md">Copilot Refactor</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-2xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="integrations-vault" href="#"><span class="material-symbols-outlined text-xl text-outline">hub</span><span class="font-body-md text-body-md">Integrations</span></a></nav></div><div class="bg-surface-container-lowest p-space-sm rounded-2xl shadow-[0_8px_24px_-4px_rgba(175,155,140,0.14)]"><div class="flex items-center justify-between mb-1.5"><span class="font-label-sm text-label-sm text-on-surface font-bold">System Health</span><span class="bg-primary-fixed text-on-primary-fixed-variant px-1.5 py-0.5 rounded-full font-label-sm text-[10px]">94.2%</span></div><div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden"><div class="bg-primary-container h-full rounded-full w-[94.2%]" style="background-color: rgb(67, 86, 43);"></div></div><p class="font-body-sm text-[11px] text-outline mt-2 leading-tight">Dynamic AST triage verified across 42 microservices.</p></div></aside><div class="pl-64"><main class="relative w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="w-full px-space-md py-space-lg flex flex-col gap-space-lg max-w-[1720px] mx-auto">
+<!-- Sub-Header & Controls -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md bg-surface-container-lowest/80 backdrop-blur-md p-space-lg rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)]">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold tracking-wider uppercase shadow-sm" style="background-color: rgb(232, 241, 219); color: rgb(45, 63, 22);">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse" style="background-color: rgb(67, 86, 43);"></span>
+            Supervised AST Random Forest Regressor
+          </span>
+<span class="font-label-sm text-label-sm text-outline px-2.5 py-0.5 rounded-full bg-surface-container-lowest shadow-sm">
+            Model v4.2.8
+          </span>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold" style="background-color: rgb(211, 228, 172); color: rgb(45, 63, 22);">
+            Inference: 4.8ms
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">
+          Telemetry Intelligence &amp; Defect Predictor
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">
+          Predictive regression engine calibrated against 24 months of Jira bug reports, AST mutation cycles, and GitHub commit velocity across 48 microservices.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md text-primary bg-surface-container-high hover:bg-surface-container-highest transition-all flex items-center gap-2" type="button" style="color: rgb(45, 63, 22); background-color: rgb(232, 241, 219); border: 1px solid rgb(197, 200, 186);">
+<span class="material-symbols-outlined text-base">science</span>
+          Run Defect Simulation
+        </button>
+<button class="px-5 py-2.5 rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-primary transition-all shadow-[0_4px_14px_rgba(67,86,43,0.3)] flex items-center gap-2" type="button" style="background-color: rgb(67, 86, 43); color: rgb(255, 255, 255); box-shadow: rgba(45, 63, 22, 0.35) 0px 4px 16px;">
+<span class="">Deploy Model Weights v4.3</span>
+<span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</div>
+<!-- Filter / Model Meta Bar -->
+<div class="flex items-center gap-space-sm overflow-x-auto pb-1 text-on-surface-variant">
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-[0_2px_8px_-2px_rgba(45,63,22,0.06)] shrink-0">
+<span class="material-symbols-outlined text-sm text-primary">history</span>
+<span class="">Model Calibrated: <strong class="text-primary font-semibold">2 hrs ago</strong></span>
+</div>
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-[0_2px_8px_-2px_rgba(45,63,22,0.06)] shrink-0">
+<span class="material-symbols-outlined text-sm text-secondary">tune</span>
+<span class="">Optimal 5-Fold Cross-Val</span>
+</div>
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-[0_2px_8px_-2px_rgba(45,63,22,0.06)] shrink-0">
+<span class="material-symbols-outlined text-sm text-outline">account_tree</span>
+<span class="">Training Corpus: <strong class="text-on-surface font-semibold">18,400 Commit ASTs</strong></span>
+</div>
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm shadow-sm shrink-0">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="">R² Fit: <strong class="text-primary font-semibold">0.9885</strong> (High Confidence)</span>
+</div>
+<div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-[0_2px_8px_-2px_rgba(45,63,22,0.06)] shrink-0 ml-auto">
+<span class="material-symbols-outlined text-sm text-outline">verified_user</span>
+<span class="">Lead Evaluator: <strong class="text-on-surface">Dhruv Patel</strong></span>
+</div>
+</div>
+<!-- Top 4 Bento KPI Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- KPI 1: Hero Lustrous Card -->
+<div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary-container via-primary to-[#202d10] p-space-lg text-on-primary shadow-[0_12px_32px_-8px_rgba(45,63,22,0.35)] flex flex-col justify-between min-h-[220px]" style="background: linear-gradient(135deg, rgb(55, 71, 35) 0%, rgb(74, 95, 48) 50%, rgb(40, 53, 24) 100%); box-shadow: rgba(45, 63, 22, 0.45) 0px 12px 32px -8px;">
+<div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-surface/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between z-10">
+<span class="font-label-sm text-label-sm text-on-primary-container tracking-wider uppercase font-semibold">ML Defect Vulnerability</span>
+<span class="px-2 py-0.5 rounded-full bg-surface/15 backdrop-blur-sm text-on-primary font-label-sm text-[10px] font-bold">+4.2% Sprint 48</span>
+</div>
+<div class="my-auto py-2 z-10">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold tracking-tight text-on-primary">38.5%</span>
+<span class="font-label-md text-label-md text-on-primary-container">Systemic Exposure</span>
+</div>
+<!-- Sparkline Sine Curve with envelope -->
+<div class="w-full h-10 mt-1">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 240 40">
+<defs>
+<linearGradient id="kpiGlow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0.0"></stop>
+</linearGradient>
+</defs>
+<polygon fill="url(#kpiGlow)" points="0,32 30,26 65,30 100,18 140,22 180,12 215,16 240,8 240,40 0,40"></polygon>
+<path d="M0,32 C30,26 65,30 100,18 C140,22 180,12 215,16 L240,8" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="2.5"></path>
+<circle class="animate-pulse" cx="240" cy="8" fill="#ffffff" r="3.5"></circle>
+</svg>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-primary-container font-label-sm text-label-sm pt-2 z-10 border-t border-white/10">
+<span class="">14 Modules Exposed</span>
+<span class="font-semibold text-on-primary">R² = 0.9885 Fit</span>
+</div>
+</div>
+<!-- KPI 2: Mean Absolute Error -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between min-h-[220px]">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Mean Absolute Error</span>
+<span class="material-symbols-outlined text-primary text-xl">analytics</span>
+</div>
+<div class="my-auto py-1">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold tracking-tight text-on-surface">1.085</span>
+<span class="font-label-md text-label-md text-outline">LOC/Defect</span>
+</div>
+<!-- Mini Bar Chart Folds -->
+<div class="flex items-end gap-1.5 h-8 mt-3 w-full">
+<div class="flex-1 bg-surface-container-high rounded-t h-[65%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t h-[80%]"></div>
+<div class="flex-1 bg-surface-container-high rounded-t h-[45%]"></div>
+<div class="flex-1 bg-primary-container rounded-t h-[92%]" style="background-color: rgb(67, 86, 43);"></div>
+<div class="flex-1 bg-surface-container-high rounded-t h-[60%]"></div>
+<div class="flex-1 bg-surface-container-highest rounded-t h-[40%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline pt-2 border-t border-surface-container-high">
+<span class="">Low Var σ²: 0.04</span>
+<span class="text-on-surface font-semibold">RMSE: 1.242</span>
+</div>
+</div>
+<!-- KPI 3: Regressor Architecture -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between min-h-[220px]">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Regressor Topology</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-[10px] font-semibold">Scikit / PyTorch</span>
+</div>
+<div class="my-auto py-1">
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Random Forest</span>
+<p class="font-title-md text-title-md text-primary font-bold mt-0.5">300 Optimized Estimators</p>
+<!-- Mini Forest Graph -->
+<div class="flex items-center justify-between gap-2 mt-3 p-2 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="font-label-sm text-[11px] text-on-surface">Max Depth: 16</span>
+</div>
+<span class="text-outline text-xs">•</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-[11px] text-on-surface">Leaf Split: 4</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline pt-2 border-t border-surface-container-high">
+<span class="">OOB Score: 98.8%</span>
+<span class="text-primary font-semibold">AST Pruned: Yes</span>
+</div>
+</div>
+<!-- KPI 4: Remediation Payoff -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between min-h-[220px]">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Remediation Payoff</span>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-[11px] font-bold" style="background-color: rgb(211, 228, 172); color: rgb(45, 63, 22);">3.4x ROI</span>
+</div>
+<div class="my-auto py-1">
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg text-display-lg font-bold tracking-tight text-on-surface">$48,200</span>
+<span class="font-label-md text-label-md text-outline">340 Dev Hrs</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2 mt-3 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-[74%]" style="background-color: rgb(67, 86, 43);"></div>
+</div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline pt-2 border-t border-surface-container-high">
+<span class="">Cost Rate: $140/hr</span>
+<span class="text-error font-semibold">Cost to ignore: $164k</span>
+</div>
+</div>
+</div>
+<!-- Main Content Layout (60/40 Bento Grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Column (approx 60% -> 7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Bento 1: SHAP & Gini Feature Importance -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                SHAP &amp; Gini Feature Importance
+              </h2>
+<p class="font-body-sm text-body-sm text-outline">
+                Marginal contribution of AST telemetry tokens on sprint regression likelihood
+              </p>
+</div>
+<!-- Toggles -->
+<div class="flex items-center bg-surface-container-high p-1 rounded-full shrink-0 self-start sm:self-auto">
+<button class="px-3.5 py-1 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary font-bold shadow-sm transition-all" id="shapBtn" type="button" style="background-color: #43562b; color: #ffffff; box-shadow: 0 2px 8px rgba(45, 63, 22, 0.25);">
+                SHAP Values
+              </button>
+<button class="px-3.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" id="giniBtn" type="button" style="background-color: rgb(67, 86, 43); color: rgb(255, 255, 255); box-shadow: rgba(45, 63, 22, 0.35) 0px 4px 16px;">
+                Gini Impurity
+              </button>
+</div>
+</div>
+<!-- Importance Bars -->
+<div class="flex flex-col gap-4 mt-2">
+<!-- Bar 1 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary" style="background-color: rgb(67, 86, 43);"></span>
+                  Developer Churn Velocity
+                </span>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-body-sm text-outline hidden sm:inline">Primary predictor of regression bugs</span>
+<span class="font-bold text-primary font-label-md" style="color: rgb(67, 86, 43);">32.0%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-700" style="width: 32%; background-color: rgb(67, 86, 43);"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                  Maintainability Index Gap
+                </span>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-body-sm text-outline hidden sm:inline">Negative correlation with test pass rate</span>
+<span class="font-bold text-secondary font-label-md">28.0%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3 overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-700" style="width: 28%; background-color: rgb(85, 100, 55);"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+                  Cyclomatic AST Complexity
+                </span>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-body-sm text-outline hidden sm:inline">Deep nested branches &amp; god methods</span>
+<span class="font-bold text-surface-tint font-label-md">22.0%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3 overflow-hidden">
+<div class="bg-surface-tint h-full rounded-full transition-all duration-700" style="width: 22%"></div>
+</div>
+</div>
+<!-- Bar 4 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-md text-label-md">
+<span class="font-semibold text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+                  Test Coverage Deficit
+                </span>
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-body-sm text-outline hidden sm:inline">Lines uncovered in critical logic paths</span>
+<span class="font-bold text-outline font-label-md">18.0%</span>
+</div>
+</div>
+<div class="w-full bg-surface-container rounded-full h-3 overflow-hidden">
+<div class="bg-outline h-full rounded-full transition-all duration-700" style="width: 18%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-2 pt-3 border-t border-surface-container text-outline font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary">info</span>
+<span class="">SHAP TreeExplainer v0.42 runs over all 300 estimators with additive feature attributions.</span>
+</div>
+</div>
+<!-- Bento 2: Multi-Curve Predictive Defect Trajectory -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                Predictive Defect Trajectory vs. AST Churn
+              </h2>
+<p class="font-body-sm text-body-sm text-outline">
+                6-Sprint timeline (S43–S48) showing model predictions with 95% confidence corridor
+              </p>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1 bg-primary rounded-full"></span>
+<span class="text-on-surface font-semibold">Predicted</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-3 h-1 bg-outline-variant rounded-full"></span>
+<span class="text-outline">Actual Jira Bugs</span>
+</div>
+</div>
+</div>
+<!-- Visual Area Chart Graphic -->
+<div class="relative w-full h-64 bg-surface-container-low rounded-2xl p-4 overflow-hidden flex flex-col justify-between">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between p-4 pointer-events-none opacity-40">
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+<div class="border-b border-surface-container-highest w-full h-0"></div>
+</div>
+<!-- SVG Curves -->
+<svg class="w-full h-full overflow-visible z-10" preserveAspectRatio="none" viewBox="0 0 540 180">
+<defs>
+<linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#43562b" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#43562b" stop-opacity="0.01"></stop>
+</linearGradient>
+</defs>
+<!-- Confidence Band -->
+<polygon fill="#43562b" fill-opacity="0.12" points="20,130 110,105 210,120 310,80 410,65 520,35 520,70 410,100 310,115 210,145 110,135 20,150"></polygon>
+<!-- Predicted Area -->
+<polygon fill="url(#areaGradient)" points="20,140 110,120 210,130 310,95 410,80 520,50 520,180 20,180"></polygon>
+<!-- Predicted Path (Moss Green) -->
+<path d="M20,140 L110,120 L210,130 L310,95 L410,80 L520,50" fill="none" stroke="#43562b" stroke-linecap="round" stroke-width="3"></path>
+<!-- Actual Bugs Path (Muted Dashed) -->
+<path d="M20,148 L110,115 L210,138 L310,88 L410,84 L520,62" fill="none" stroke="#75786d" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="2"></path>
+<!-- Nodes on Predicted -->
+<circle cx="20" cy="140" fill="#43562b" r="3.5"></circle>
+<circle cx="110" cy="120" fill="#43562b" r="3.5"></circle>
+<circle cx="210" cy="130" fill="#43562b" r="3.5"></circle>
+<circle cx="310" cy="95" fill="#43562b" r="3.5"></circle>
+<circle cx="410" cy="80" fill="#43562b" r="3.5"></circle>
+<circle cx="520" cy="50" fill="#2d3f16" r="5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="flex justify-between items-center text-outline font-label-sm text-label-sm pt-2 z-10">
+<span class="">Sprint 43</span>
+<span class="">Sprint 44</span>
+<span class="">Sprint 45</span>
+<span class="">Sprint 46</span>
+<span class="">Sprint 47</span>
+<span class="text-primary font-bold" style="color: rgb(67, 86, 43);">Sprint 48 (Current)</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 text-center pt-2">
+<div class="bg-surface-container-high/60 p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-outline block">Historical Accuracy</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">96.8%</span>
+</div>
+<div class="bg-surface-container-high/60 p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-outline block">Drift Coefficient</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">0.014</span>
+</div>
+<div class="bg-surface-container-high/60 p-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-outline block">Projected Regressions</span>
+<span class="font-headline-sm text-headline-sm text-error font-bold">8.4 Bugs</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (approx 40% -> 5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Bento 3: Tree Ensemble Topology & Convergence -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                Tree Ensemble Topology
+              </h2>
+<p class="font-body-sm text-body-sm text-outline">
+                Partition balance across 300 estimators
+              </p>
+</div>
+<span class="flex items-center gap-1 text-[11px] font-label-sm text-primary bg-primary-fixed px-2.5 py-1 rounded-full font-bold" style="background-color: rgb(211, 228, 172); color: rgb(45, 63, 22);">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping" style="background-color: rgb(45, 63, 22);"></span>
+              Active
+            </span>
+</div>
+<!-- Radial Dial / Donut Section -->
+<div class="flex items-center justify-center gap-6 py-2">
+<div class="relative w-36 h-36 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+<!-- Background track -->
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<!-- Pruned: 10% -->
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#c5c8ba" stroke-dasharray="10, 100" stroke-dashoffset="0" stroke-linecap="round" stroke-width="4"></path>
+<!-- Boundary: 22% -->
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#556437" stroke-dasharray="22, 100" stroke-dashoffset="-10" stroke-linecap="round" stroke-width="4"></path>
+<!-- High Confidence: 68% -->
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#43562b" stroke-dasharray="68, 100" stroke-dashoffset="-32" stroke-linecap="round" stroke-width="4.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold leading-none">300</span>
+<span class="font-label-sm text-[10px] text-outline uppercase tracking-wider mt-0.5">Trees</span>
+</div>
+</div>
+<!-- Donut Legend -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shrink-0"></span>
+<span class="text-on-surface font-semibold">High Confidence</span>
+<span class="text-outline ml-auto font-bold">68%</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shrink-0"></span>
+<span class="text-on-surface font-semibold">Boundary Decisions</span>
+<span class="text-outline ml-auto font-bold">22%</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-outline-variant shrink-0"></span>
+<span class="text-on-surface font-semibold">Pruned Outliers</span>
+<span class="text-outline ml-auto font-bold">10%</span>
+</div>
+</div>
+</div>
+<!-- Secondary Metrics -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-surface-container">
+<div class="p-2.5 bg-surface-container-low rounded-xl">
+<span class="font-label-sm text-[11px] text-outline block">Leaves Avg / Tree</span>
+<span class="font-title-md text-title-md text-on-surface font-bold">1,824 nodes</span>
+</div>
+<div class="p-2.5 bg-surface-container-low rounded-xl">
+<span class="font-label-sm text-[11px] text-outline block">OOB Error</span>
+<span class="font-title-md text-title-md text-primary font-bold">0.0115 (Lowest)</span>
+</div>
+</div>
+</div>
+<!-- Bento 4: High-Entropy Vulnerability Hotspots -->
+<div class="rounded-[2rem] bg-surface-container-lowest p-space-lg shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between flex-1 gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                High-Entropy Vulnerability Hotspots
+              </h2>
+<p class="font-body-sm text-body-sm text-outline">
+                Top modules with maximum probability of failure
+              </p>
+</div>
+<span class="material-symbols-outlined text-error text-xl">priority_high</span>
+</div>
+<!-- Hotspot List -->
+<div class="flex flex-col gap-2.5">
+<!-- Module 1 -->
+<div class="p-3 bg-surface-container-low hover:bg-surface-container transition-colors rounded-2xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface font-mono truncate max-w-[200px] sm:max-w-xs">
+                  pkg/billing/PaymentGateway.py
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px] font-bold shrink-0" style="background-color: rgb(255, 218, 214); color: rgb(147, 0, 10);">
+                  94.2% Risk
+                </span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span class="">Cyclomatic: <strong class="text-on-surface">52</strong></span>
+<span class="">Defect Prob: <strong class="text-error">78.4%</strong></span>
+<span class="text-primary font-semibold">14 mutations</span>
+</div>
+</div>
+<!-- Module 2 -->
+<div class="p-3 bg-surface-container-low hover:bg-surface-container transition-colors rounded-2xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface font-mono truncate max-w-[200px] sm:max-w-xs">
+                  services/auth/TokenManager.ts
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold shrink-0">
+                  87.5% Risk
+                </span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span class="">Cyclomatic: <strong class="text-on-surface">44</strong></span>
+<span class="">Defect Prob: <strong class="text-secondary">62.1%</strong></span>
+<span class="text-primary font-semibold">9 mutations</span>
+</div>
+</div>
+<!-- Module 3 -->
+<div class="p-3 bg-surface-container-low hover:bg-surface-container transition-colors rounded-2xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-bold text-on-surface font-mono truncate max-w-[200px] sm:max-w-xs">
+                  core/pipeline/Orchestrator.java
+                </span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold shrink-0">
+                  82.3% Risk
+                </span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-outline">
+<span class="">Cyclomatic: <strong class="text-on-surface">48</strong></span>
+<span class="">Defect Prob: <strong class="text-secondary">59.8%</strong></span>
+<span class="text-primary font-semibold">11 mutations</span>
+</div>
+</div>
+</div>
+<!-- 1-Click Action Button -->
+<button class="w-full py-3 px-4 rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-primary transition-all shadow-[0_4px_16px_rgba(67,86,43,0.3)] flex items-center justify-center gap-2 mt-1" type="button" style="background-color: rgb(67, 86, 43); color: rgb(255, 255, 255); box-shadow: rgba(45, 63, 22, 0.35) 0px 4px 16px;">
+<span class="material-symbols-outlined text-lg">task_alt</span>
+<span class="">Auto-Generate Jira Prevention Tickets (3)</span>
+<span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Status Strip -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md px-space-lg py-space-sm rounded-2xl shadow-[0_2px_12px_-2px_rgba(45,63,22,0.05)] flex flex-col sm:flex-row items-center justify-between gap-2 text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="">Model Checkpoint: <code class="font-mono text-on-surface bg-surface-container-high px-1.5 py-0.5 rounded text-[11px]">sha256:9c41f021e8d9...</code></span>
+</div>
+<div class="flex items-center gap-4">
+<span class="">Next retraining cycle: <strong class="text-on-surface">6 hours</strong></span>
+<span class="">•</span>
+<span class="">Drift tolerance: <strong class="text-primary">Within 1.2% threshold</strong></span>
+</div>
+</div>
+</div>
+<script>
+    const shapBtn = document.getElementById('shapBtn');
+    const giniBtn = document.getElementById('giniBtn');
+    if (shapBtn && giniBtn) {
+      shapBtn.addEventListener('click', () => {
+        shapBtn.className = 'px-3.5 py-1 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary font-bold shadow-sm transition-all';
+        giniBtn.className = 'px-3.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all';
+      });
+      giniBtn.addEventListener('click', () => {
+        giniBtn.className = 'px-3.5 py-1 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary font-bold shadow-sm transition-all';
+        shapBtn.className = 'px-3.5 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all';
+      });
+    }
+  </script>
+</div></main></div>
+
+</body></html>

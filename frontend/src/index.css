@@ -1,1 +1,129 @@
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Lustrous Moss Palette Tokens */
+  --color-primary: #2d3f16;
+  --color-primary-container: #43562b;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #d3ebb2;
+  --color-primary-fixed: #d3ebb2;
+  --color-primary-fixed-dim: #b8ce98;
+
+  --color-secondary: #556437;
+  --color-secondary-container: #d3e4ac;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #576639;
+
+  --color-tertiary: #353c26;
+  --color-tertiary-container: #4b533c;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #bec6a9;
+
+  --color-moss-dark: #1e2a0f;
+  --color-moss-deep: #253314;
+  --color-moss-satin: #384a24;
+  --color-moss-forest: #43562b;
+  --color-moss-bright: #5b723a;
+  --color-moss-light: #d3ebb2;
+  --color-moss-surface: #eef7e0;
+
+  --color-background: #f4f6f0;
+  --color-surface: #f4f6f0;
+  --color-surface-bright: #f8faf6;
+  --color-surface-dim: #ccd6c4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #edf1e8;
+  --color-surface-container: #e5ebe0;
+  --color-surface-container-high: #dde5d7;
+  --color-surface-container-highest: #d4dece;
+
+  --color-on-surface: #161e10;
+  --color-on-surface-variant: #45483e;
+  --color-outline: #75786d;
+  --color-outline-variant: #c5c8ba;
+
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+}
+
+@layer base {
+  body {
+    background-color: #f4f6f0;
+    color: #161e10;
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(117, 120, 109, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 86, 43, 0.5);
+}
+
+/* Tactile Glass & Satin Gradients */
+.bg-moss-hero {
+  background: linear-gradient(135deg, #43562b 0%, #2d3f16 60%, #1e2a0f 100%);
+}
+
+.bg-moss-card {
+  background: linear-gradient(135deg, #4d6332 0%, #384a24 50%, #253314 100%);
+}
+
+.glass-bento {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 222, 206, 0.7);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 200, 186, 0.6);
+}
+
+/* Micro-animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(67, 86, 43, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(67, 86, 43, 0);
+  }
+}
+
+.animate-glow {
+  animation: pulse-glow 2.5s infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
