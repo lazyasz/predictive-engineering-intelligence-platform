@@ -126,12 +126,13 @@ def get_google_login_url(state: Optional[str] = None) -> str:
     )
 
 
-async def exchange_google_code(code: str) -> Dict[str, Any]:
+async def exchange_google_code(code: str, redirect_uri: Optional[str] = None) -> Dict[str, Any]:
     """
     Exchanges Google authorization code for access token and fetches user profile.
     Mints an application JWT token for client-side state.
     """
     global _active_user
+    effective_redirect_uri = redirect_uri or settings.GOOGLE_REDIRECT_URI
 
     # If live Google credentials are configured
     if settings.GOOGLE_CLIENT_ID and settings.GOOGLE_CLIENT_SECRET:
@@ -143,7 +144,7 @@ async def exchange_google_code(code: str) -> Dict[str, Any]:
                         "code": code,
                         "client_id": settings.GOOGLE_CLIENT_ID,
                         "client_secret": settings.GOOGLE_CLIENT_SECRET,
-                        "redirect_uri": settings.GOOGLE_REDIRECT_URI,
+                        "redirect_uri": effective_redirect_uri,
                         "grant_type": "authorization_code",
                     },
                 )

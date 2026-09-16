@@ -136,6 +136,11 @@ export async function loginWithGoogle(credential) {
   return data;
 }
 
+export async function exchangeGoogleCode(code) {
+  const { data } = await apiClient.post('/api/auth/google/code', { code });
+  return data;
+}
+
 export async function switchDemoProfile(profile_key) {
   const { data } = await apiClient.post('/api/auth/switch-profile', { profile_key });
   return data;

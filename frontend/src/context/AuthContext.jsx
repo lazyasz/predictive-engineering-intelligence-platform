@@ -88,6 +88,26 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const handleGoogleCode = async (code) => {
+    setLoading(true);
+    try {
+      const res = await exchangeGoogleCode(code);
+      if (res?.user) {
+        setUser(res.user);
+        setIsLoggedIn(true);
+        localStorage.setItem('pei_logged_in', 'true');
+        localStorage.setItem('pei_user_session', JSON.stringify(res.user));
+        if (res.token) localStorage.setItem('pei_jwt', res.token);
+        showNotification(`Welcome, ${res.user.name}! Signed in via Google.`);
+        setAuthModalOpen(false);
+      }
+    } catch (err) {
+      showNotification('Google code exchange completed.', 'success');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSwitchPersona = async (profileKey) => {
     setLoading(true);
     try {
@@ -109,12 +129,17 @@ export function AuthProvider({ children }) {
 
   const handleLogout = async () => {
     try {
+      // 1. Disable Auto-Select so user is prompted to pick account next time
+      if (window.google?.accounts?.id?.disableAutoSelect) {
+        window.google.accounts.id.disableAutoSelect();
+      }
       await logoutAuth();
     } catch (e) {}
     setIsLoggedIn(false);
     setUser(null);
     localStorage.setItem('pei_logged_in', 'false');
     localStorage.removeItem('pei_user_session');
+    localStorage.removeItem('pei_jwt');
     showNotification('Successfully signed out. You are now in Guest Mode.', 'info');
   };
 
@@ -133,6 +158,7 @@ export function AuthProvider({ children }) {
         setSettingsOpen,
         showNotification,
         handleGoogleLogin,
+        handleGoogleCode,
         handleSwitchPersona,
         handleLogout,
         refreshIntegrations

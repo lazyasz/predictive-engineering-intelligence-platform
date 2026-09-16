@@ -89,6 +89,30 @@ async def google_oauth_callback(code: str = Query(..., description="Authorizatio
     return RedirectResponse(redirect_url)
 
 
+class GoogleCodeExchangeRequest(BaseModel):
+    code: str = Field(..., description="One-time authorization code from Google Identity Services popup")
+
+
+@router.post("/google/code", summary="Exchange Google OAuth 2.0 Authorization Code from Popup")
+async def exchange_google_code_endpoint(payload: GoogleCodeExchangeRequest):
+    """
+    Exchanges authorization code received from GIS initCodeClient popup flow
+    at Google Token endpoint (redirect_uri='postmessage'), validates user info,
+    and returns authenticated user object with signed application JWT.
+    """
+    if not payload.code:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing Google OAuth authorization code."
+        )
+    result = await exchange_google_code(payload.code, redirect_uri="postmessage")
+    return {
+        "status": "success",
+        "user": result["user"],
+        "token": result["app_token"]
+    }
+
+
 @router.post("/verify-jwt", summary="Verify and Decode Application JWT")
 def verify_jwt_endpoint(payload: VerifyJwtRequest):
     """Verifies client-stored JWT and returns active user profile."""
