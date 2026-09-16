@@ -273,6 +273,7 @@ def inspect_google_token(credential_jwt: str) -> Dict[str, Any]:
     """
     Diagnostic & audit helper for development/testing:
     Parses and reports full OIDC claim validation status:
+    - verified (top-level unambiguous boolean)
     - email_verified (boolean)
     - sub (Google unique user id)
     - aud (audience / client ID match)
@@ -280,6 +281,7 @@ def inspect_google_token(credential_jwt: str) -> Dict[str, Any]:
     - exp (token expiration)
     """
     diagnostic = {
+        "verified": False,
         "token_format_valid": False,
         "email": None,
         "email_verified": None,
@@ -307,10 +309,18 @@ def inspect_google_token(credential_jwt: str) -> Dict[str, Any]:
                 diagnostic["is_expired"] = time.time() > exp
                 diagnostic["expires_at"] = datetime.fromtimestamp(exp, timezone.utc).isoformat()
             
+            # Check overall validity
+            is_email_verified = payload.get("email_verified") is True
+            has_sub = bool(payload.get("sub"))
+            not_expired = not diagnostic["is_expired"]
+            
+            diagnostic["verified"] = bool(diagnostic["token_format_valid"] and is_email_verified and has_sub and not_expired)
+
             diagnostic["claims_audit"] = {
-                "email_verified_status": "PASSED" if payload.get("email_verified") is True else "FAILED (unverified email)",
+                "email_verified_status": "PASSED" if is_email_verified else "FAILED (unverified email)",
                 "issuer_status": "PASSED" if payload.get("iss") in ["accounts.google.com", "https://accounts.google.com"] else "WARNING (custom issuer)",
-                "sub_anchor_status": "PASSED" if payload.get("sub") else "FAILED (missing unique sub ID)"
+                "sub_anchor_status": "PASSED" if has_sub else "FAILED (missing unique sub ID)",
+                "expiration_status": "PASSED" if not_expired else "FAILED (token expired)"
             }
     except Exception as e:
         diagnostic["error"] = str(e)

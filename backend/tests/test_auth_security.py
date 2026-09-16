@@ -26,9 +26,9 @@ def create_mock_jwt(payload: dict) -> str:
 def test_verified_google_user_accepted():
     """Valid verified Google user token passes and returns sub-keyed identity."""
     payload = {
-        "email": "dhruvsakhare2006@gmail.com",
+        "email": "engineer.lead@example.com",
         "email_verified": True,
-        "name": "Dhruv Sakhare",
+        "name": "Lead Engineer",
         "sub": "109876543210987654321",
         "iss": "https://accounts.google.com",
         "aud": "test-client-id.apps.googleusercontent.com",
@@ -37,7 +37,7 @@ def test_verified_google_user_accepted():
     token = create_mock_jwt(payload)
     user = verify_google_credential(token)
 
-    assert user["email"] == "dhruvsakhare2006@gmail.com"
+    assert user["email"] == "engineer.lead@example.com"
     assert user["email_verified"] is True
     assert user["google_sub"] == "109876543210987654321"
     assert user["id"] == "usr_google_109876543210987654321"
@@ -84,7 +84,7 @@ def test_inspect_google_token_diagnostic():
     from backend.services.auth_service import inspect_google_token
 
     payload = {
-        "email": "dhruvsakhare2006@gmail.com",
+        "email": "engineer.lead@example.com",
         "email_verified": True,
         "sub": "google_uid_998877",
         "iss": "https://accounts.google.com",
@@ -94,10 +94,12 @@ def test_inspect_google_token_diagnostic():
     token = create_mock_jwt(payload)
     report = inspect_google_token(token)
 
+    assert report["verified"] is True
     assert report["token_format_valid"] is True
     assert report["email_verified"] is True
     assert report["google_sub"] == "google_uid_998877"
     assert report["claims_audit"]["email_verified_status"] == "PASSED"
     assert report["claims_audit"]["issuer_status"] == "PASSED"
     assert report["claims_audit"]["sub_anchor_status"] == "PASSED"
+    assert report["claims_audit"]["expiration_status"] == "PASSED"
 
