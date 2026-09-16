@@ -332,7 +332,7 @@ export default function AuthModal() {
 
             {/* Privacy & Terms notice */}
             <div className="text-[11px] text-[#8e918f] leading-relaxed">
-              To continue, Google will share your name, email address, language preference, and profile picture with PEI Platform.
+              To continue, Google will share your name, email address, language preference, and profile picture with DebtScope.
             </div>
           </div>
         )}

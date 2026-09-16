@@ -10,7 +10,7 @@ from pydantic import Field
 
 class Settings(BaseSettings):
     # App Information
-    PROJECT_NAME: str = "Predictive Engineering Intelligence Platform"
+    PROJECT_NAME: str = "DebtScope — Predictive Engineering Intelligence"
     PROJECT_DESCRIPTION: str = (
         "Business-aware Decision Intelligence API for Technical Debt Prioritization"
     )

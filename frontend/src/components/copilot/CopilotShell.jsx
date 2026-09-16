@@ -29,7 +29,7 @@ export default function CopilotShell() {
     {
       id: 1,
       sender: 'copilot',
-      text: "👋 Welcome to the **PEI AI Engineering Copilot**! I'm integrated directly with our AST telemetry mesh, Random Forest defect models, and 5D prioritization engine. Ask me anything about high-risk hotspots, technical debt ROI, or remediation diffs.",
+      text: "👋 Welcome to the **DebtScope AI Engineering Copilot**! I'm integrated directly with our AST telemetry mesh, Random Forest defect models, and 5D prioritization engine. Ask me anything about high-risk hotspots, technical debt ROI, or remediation diffs.",
       timestamp: 'Just now',
     },
   ]);

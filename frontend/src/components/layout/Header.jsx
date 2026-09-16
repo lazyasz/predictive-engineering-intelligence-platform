@@ -68,7 +68,7 @@ export default function Header({ onMenuClick, onOpenScanModal }) {
               <span className="material-symbols-outlined text-xl">hub</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-base text-[#161e10] tracking-tight leading-none">PEI Platform</span>
+              <span className="font-bold text-base text-[#161e10] tracking-tight leading-none">DebtScope</span>
               <span className="text-[10px] font-mono text-[#75786d] uppercase tracking-wider font-semibold">Intelligence Mesh</span>
             </div>
           </div>

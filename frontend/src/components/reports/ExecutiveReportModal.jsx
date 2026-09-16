@@ -112,7 +112,7 @@ export default function ExecutiveReportModal({ isOpen, onClose }) {
             <div>
               <div className="flex items-center gap-2 text-[#43562b] font-bold text-xs uppercase tracking-widest font-mono">
                 <ShieldCheck className="w-4 h-4" />
-                <span>Predictive Engineering Intelligence Platform</span>
+                <span>DebtScope Architecture Intelligence Platform</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black text-[#161e10] tracking-tight mt-1">
                 Technical Debt & Defect Audit
@@ -257,7 +257,7 @@ export default function ExecutiveReportModal({ isOpen, onClose }) {
           {/* Audit Sign-off Footer */}
           <div className="pt-6 border-t border-[#d4dece] flex items-center justify-between text-[11px] text-[#75786d] font-mono">
             <div>
-              <span>Certified by: Predictive Engineering Intelligence Mesh</span>
+              <span>Certified by: DebtScope Intelligence Mesh</span>
               <br />
               <span>Compliance: ISO/IEC 25010 Quality Model Standards</span>
             </div>

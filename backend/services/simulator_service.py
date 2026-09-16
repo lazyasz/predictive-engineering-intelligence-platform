@@ -351,7 +351,7 @@ def generate_executive_audit_summary() -> Dict[str, Any]:
     # Compute overall platform metrics from Lakehouse
     summary = {
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
-        "organization": "Predictive Engineering Intelligence (PEI) Architecture Board",
+        "organization": "DebtScope Architecture Intelligence Board",
         "overall_health_grade": "A- (Strong Defect Governance)",
         "health_score_index": 88.5,
         "monitored_repositories": 31,
@@ -361,7 +361,7 @@ def generate_executive_audit_summary() -> Dict[str, Any]:
         "executive_kpis": {
             "total_technical_debt_hours": 1420.5,
             "estimated_annual_cost_of_debt": "$120,742.50",
-            "projected_savings_with_pei": "$58,400.00",
+            "projected_savings_with_debtscope": "$58,400.00",
             "mean_time_to_remediate_hotspot": "2.4 Sprints",
             "defect_prediction_accuracy_lift": "+35.18% over Mean Baseline"
         },

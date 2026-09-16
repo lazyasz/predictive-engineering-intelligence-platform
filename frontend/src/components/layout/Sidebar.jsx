@@ -46,7 +46,7 @@ export default function Sidebar({ open, onClose, onOpenScanModal }) {
             <span className="material-symbols-outlined text-2xl">hub</span>
           </div>
           <div>
-            <h1 className="text-sm font-extrabold text-[#161e10] tracking-tight">PEI Platform</h1>
+            <h1 className="text-sm font-extrabold text-[#161e10] tracking-tight">DebtScope</h1>
             <p className="text-[10px] font-mono text-[#556437] font-semibold leading-tight">Intelligence Mesh</p>
           </div>
         </div>
