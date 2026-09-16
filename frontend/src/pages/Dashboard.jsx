@@ -101,12 +101,12 @@ export default function Dashboard() {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8f1db] text-[#2d3f16] font-mono text-[11px] font-bold tracking-wide uppercase">
               <span className="w-2 h-2 rounded-full bg-[#43562b] animate-pulse"></span>
-              Continuous AST Telemetry Engine
+              DebtScope Telemetry Engine
             </span>
             <span className="text-xs text-[#75786d] font-mono">v4.18.2 · Active Mesh</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#161e10] tracking-tight">
-            Engineering Decision Intelligence Overview
+            DebtScope Decision Intelligence Overview
           </h1>
           <p className="text-sm text-[#45483e] max-w-3xl">
             Real-time algorithmic triage linking software big data, Random Forest defect forecasts ($R^2 = 0.9885$), and business ROI prioritization.

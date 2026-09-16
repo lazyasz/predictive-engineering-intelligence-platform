@@ -41,12 +41,12 @@ export default function Simulator() {
           <div className="flex items-center gap-2 flex-wrap">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8f1db] text-[#2d3f16] font-mono text-[11px] font-bold tracking-wide uppercase">
               <Zap className="w-3.5 h-3.5 text-[#43562b]" />
-              Predictive Simulation & CI/CD Gates
+              DebtScope Simulation & CI/CD Gates
             </span>
             <span className="text-xs text-[#75786d] font-mono">Real-time SZZ Model Inference</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#161e10] tracking-tight">
-            Refactoring ROI & Pre-Merge Risk Engine
+            DebtScope Refactoring ROI & Pre-Merge Risk Engine
           </h1>
           <p className="text-sm text-[#45483e] max-w-3xl">
             Simulate code improvements, explore codebase spatial topology, and enforce automated pre-merge risk gates before production deploys.
