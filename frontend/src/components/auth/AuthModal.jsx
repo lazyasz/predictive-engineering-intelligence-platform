@@ -7,10 +7,10 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000
 export default function AuthModal() {
   const { authModalOpen, setAuthModalOpen, profiles, user, handleSwitchPersona, handleGoogleLogin, loading } = useAuth();
   const [customEmail, setCustomEmail] = useState('');
+  const [selectedRole, setSelectedRole] = useState('Lead Architect');
 
   if (!authModalOpen) return null;
 
-  const [selectedRole, setSelectedRole] = useState('Lead Architect');
 
   const triggerGoogleAuth = (e) => {
     e?.preventDefault();
