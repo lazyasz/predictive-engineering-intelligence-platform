@@ -10,9 +10,9 @@ venv/
 
 # Node / Frontend
 node_modules/
-dist/
 dist_submission/
 .turbo/
+
 
 # Database & Datasets
 *.db
