@@ -97,6 +97,11 @@ export async function getFile(id) {
   }
 }
 
+export async function scanRepository(url) {
+  const { data } = await apiClient.post('/api/repositories/scan', { url });
+  return data;
+}
+
 // -------------------------------------------------------------
 // Authentication & RBAC APIs
 // -------------------------------------------------------------

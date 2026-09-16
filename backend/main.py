@@ -157,10 +157,11 @@ def health_check():
 
 
 # ---------------------------------------------------------
-# Mount Primary API Router (both /api/v1 and /api for compatibility)
+# Mount Primary API Router (supports /api/v1, /api, and root endpoints)
 # ---------------------------------------------------------
 app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router, prefix="/api")
+app.include_router(api_router)
 
 # ---------------------------------------------------------
 # Serve Compiled Frontend SPA (Production Static Files)
