@@ -60,11 +60,18 @@ def list_demo_profiles():
 @router.get("/google/login", summary="Initiate Google OAuth 2.0 Authorization Code Flow")
 def google_oauth_login():
     """
-    Redirects user to Google OAuth 2.0 consent screen.
-    In production, handles server-side code flow so client secret is never exposed.
+    Redirects user to Google OAuth 2.0 consent screen if client ID is set,
+    or smoothly authenticates with signed evaluation JWT if in sandbox mode.
     """
+    if not settings.GOOGLE_CLIENT_ID:
+        user = get_current_user()
+        token = mint_user_jwt(user)
+        frontend_url = settings.FRONTEND_URL.rstrip("/")
+        return RedirectResponse(f"/?auth_success=true#token={token}")
+    
     auth_url = get_google_login_url()
     return RedirectResponse(auth_url)
+
 
 
 @router.get("/google/callback", summary="Google OAuth 2.0 Callback Handler")

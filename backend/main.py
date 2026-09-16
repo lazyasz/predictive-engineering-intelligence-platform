@@ -121,7 +121,7 @@ async def http_exception_handler(request: Request, exc: HTTPException):
 # Root & Health Check Endpoints
 # ---------------------------------------------------------
 
-@app.get("/", tags=["System"])
+@app.get("/api/info", tags=["System"])
 def root():
     """Root metadata and platform summary."""
     return {
@@ -132,6 +132,7 @@ def root():
         "swagger_redoc": "/redoc",
         "api_v1_prefix": settings.API_V1_STR,
     }
+
 
 
 @app.get("/health", tags=["System"])
@@ -161,7 +162,37 @@ def health_check():
 app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router, prefix="/api")
 
+# ---------------------------------------------------------
+# Serve Compiled Frontend SPA (Production Static Files)
+# ---------------------------------------------------------
+import os
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
+
+if os.path.exists(frontend_dist):
+    assets_dir = os.path.join(frontend_dist, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_spa(full_path: str):
+        # Don't intercept API routes or documentation
+        if full_path.startswith("api/") or full_path.startswith("docs") or full_path.startswith("openapi.json") or full_path.startswith("redoc"):
+            raise HTTPException(status_code=404, detail="Not Found")
+        
+        file_path = os.path.join(frontend_dist, full_path)
+        if os.path.isfile(file_path):
+            return FileResponse(file_path)
+        
+        index_html = os.path.join(frontend_dist, "index.html")
+        if os.path.isfile(index_html):
+            return FileResponse(index_html)
+        raise HTTPException(status_code=404, detail="Frontend build not found")
+
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+
