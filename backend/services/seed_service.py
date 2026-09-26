@@ -16,7 +16,7 @@ from backend.services.priority_service import PriorityService
 from backend.services.recommendation_service import RecommendationService
 
 
-def seed_database(db: Session) -> None:
+def seed_database(db: Session, include_benchmark: bool = False) -> None:
     """Seeds the database with realistic microservice files and metrics."""
     # Check if already seeded
     existing_repo = db.query(Repository).filter(Repository.name == "ecommerce-core-platform").first()
@@ -377,13 +377,14 @@ def seed_database(db: Session) -> None:
     PriorityService.analyze_all_files(db, repo.id)
     RecommendationService.generate_all_recommendations(db, repo.id)
 
-    # Ingest primary benchmark project (ZooKeeper) from Gold Lakehouse if available
-    try:
-        from backend.services.repo_scanner_service import RepoScannerService
-        existing_apache = db.query(Repository).filter(Repository.name == "zookeeper").first()
-        if not existing_apache:
-            RepoScannerService.scan_github_repository(db, "https://github.com/apache/zookeeper")
-    except Exception as e:
-        print(f"[-] Benchmark seed note: {e}")
+    # Ingest primary benchmark project (ZooKeeper) from Gold Lakehouse if requested
+    if include_benchmark:
+        try:
+            from backend.services.repo_scanner_service import RepoScannerService
+            existing_apache = db.query(Repository).filter(Repository.name == "zookeeper").first()
+            if not existing_apache:
+                RepoScannerService.scan_github_repository(db, "https://github.com/apache/zookeeper")
+        except Exception as e:
+            print(f"[-] Benchmark seed note: {e}")
 
 

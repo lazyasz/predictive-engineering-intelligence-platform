@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useFile } from '../hooks/useFile';
 import { useAuth } from '../context/AuthContext';
+import ChartTooltip from '../components/ui/ChartTooltip';
 import { 
   ResponsiveContainer, 
   AreaChart, 
@@ -51,12 +52,17 @@ export default function FileIntelligence() {
   if (error) return <ErrorState message={error} />;
   if (!data) return <EmptyState title="File not found in index" />;
 
+  const fileName = data.file_path || data.file_name || data.file || id || 'Module';
+  const pathParts = typeof fileName === 'string' ? fileName.split('/') : ['services', 'core.py'];
+  const techRisk = data.risk_score ?? data.technical_risk ?? 78.0;
+  const predRisk = data.predicted_risk ?? (techRisk * 1.06);
+
   const componentData = {
-    component: data.file,
+    component: fileName,
     priority_score: data.priority_score || 82.5,
     remediation_effort_hours: (data.remediation_effort || 5) * 2,
     defect_probability: (data.defects || 2) * 0.2,
-    technical_risk: data.risk_score || 78.0,
+    technical_risk: techRisk,
     business_impact: (data.business_impact || 7) * 10,
     roi_quadrant: data.severity === 'critical' ? 'Strategic Refactoring' : 'Quick Wins',
     explanation: data.description || 'Target file exhibits high cyclomatic complexity and historical defect density.',
@@ -66,7 +72,7 @@ export default function FileIntelligence() {
     setIsGeneratingAiPatch(true);
     setTimeout(() => {
       setIsGeneratingAiPatch(false);
-      setAiPatch(`// Refactoring Recommendation for: ${data.file}
+      setAiPatch(`// Refactoring Recommendation for: ${fileName}
 // Decomposing monolithic method into decoupled single-responsibility sub-routines
 
 - def handle_transaction_event(event_payload, user_context, auth_header):
@@ -98,7 +104,7 @@ export default function FileIntelligence() {
     { date: 'Sprint 45', risk_score: 74 },
     { date: 'Sprint 46', risk_score: 82 },
     { date: 'Sprint 47', risk_score: 85 },
-    { date: 'Sprint 48', risk_score: data.risk_score || 88 },
+    { date: 'Sprint 48', risk_score: Math.round(techRisk) },
   ];
 
   return (
@@ -106,13 +112,27 @@ export default function FileIntelligence() {
       
       {/* Back Button & Sub-header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white hover:bg-[#edf1e8] text-[#2d3f16] text-xs font-bold border border-[#d4dece] shadow-xs transition"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Telemetry Explorer</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white hover:bg-[#edf1e8] text-[#2d3f16] text-xs font-bold border border-[#d4dece] shadow-2xs transition cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back</span>
+          </button>
+          {/* Breadcrumb path */}
+          <nav className="flex items-center gap-1.5 text-xs font-mono text-[#556437] overflow-x-auto">
+            <span>root</span>
+            {pathParts.map((part, idx) => (
+              <React.Fragment key={idx}>
+                <span className="text-[#a8b09b]">/</span>
+                <span className={idx === pathParts.length - 1 ? 'text-[#161e10] font-bold' : ''}>
+                  {part}
+                </span>
+              </React.Fragment>
+            ))}
+          </nav>
+        </div>
 
         <div className="flex items-center gap-2">
           <button
@@ -135,13 +155,13 @@ export default function FileIntelligence() {
       {/* Hero File Overview Card */}
       <section className="p-6 bg-white/90 backdrop-blur-md rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] space-y-3">
         <div className="flex items-center gap-3 flex-wrap">
-          <div className="w-10 h-10 rounded-2xl bg-[#43562b] text-white flex items-center justify-center shadow-md">
+          <div className="w-10 h-10 rounded-2xl bg-[#43562b] text-white flex items-center justify-center shadow-md shrink-0">
             <Code2 className="w-5 h-5" />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-extrabold font-mono text-[#161e10] truncate">
-                {data.file}
+            <div className="flex items-center gap-2 flex-wrap">
+              <h1 className="text-xl sm:text-2xl font-extrabold font-mono text-[#161e10] break-all">
+                {fileName}
               </h1>
               <span className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] font-bold ${
                 data.severity === 'critical'
@@ -161,8 +181,8 @@ export default function FileIntelligence() {
       {/* 6 Bento Metric Capsules */}
       <section className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {[
-          { label: 'Technical Risk', value: `${formatScore(data.risk_score)} / 100`, icon: Shield, color: '#ba1a1a', bg: '#ffdad6' },
-          { label: 'Predicted Risk', value: `${formatScore(data.predicted_risk || data.risk_score * 1.1)} / 100`, icon: Target, color: '#855300', bg: '#ffddb8' },
+          { label: 'Technical Risk', value: `${formatScore(techRisk)} / 100`, icon: Shield, color: '#ba1a1a', bg: '#ffdad6' },
+          { label: 'Predicted Risk', value: `${formatScore(predRisk)} / 100`, icon: Target, color: '#855300', bg: '#ffddb8' },
           { label: 'Cyclomatic Peak', value: data.complexity || 38, icon: GitBranch, color: '#43562b', bg: '#d3e4ac' },
           { label: 'Churn (30d)', value: `${data.churn || 480} LOC`, icon: Clock, color: '#2d3f16', bg: '#e8f1db' },
           { label: 'Total LOC', value: (data.lines_of_code || 840).toLocaleString(), icon: FileCode, color: '#161e10', bg: '#edf1e8' },
@@ -175,7 +195,7 @@ export default function FileIntelligence() {
               </span>
             </div>
             <p className="text-lg font-mono font-extrabold text-[#161e10] pt-1">{m.value}</p>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-[#75786d]">{m.label}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[#556437]">{m.label}</p>
           </div>
         ))}
       </section>
@@ -207,10 +227,8 @@ export default function FileIntelligence() {
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5ebe0" />
                 <XAxis dataKey="date" stroke="#75786d" fontSize={10} />
                 <YAxis stroke="#75786d" fontSize={10} domain={[0, 100]} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#1e2a0f', borderColor: '#43562b', borderRadius: '14px', color: '#fff', fontSize: '11px' }}
-                />
-                <Area type="monotone" dataKey="risk_score" stroke="#ba1a1a" strokeWidth={3} fillOpacity={1} fill="url(#riskGrad)" />
+                <Tooltip content={<ChartTooltip unit=" pts" />} />
+                <Area type="monotone" dataKey="risk_score" stroke="#ba1a1a" strokeWidth={3} fillOpacity={1} fill="url(#riskGrad)" isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>

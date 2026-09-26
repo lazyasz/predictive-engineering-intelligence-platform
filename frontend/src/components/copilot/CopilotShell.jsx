@@ -162,14 +162,59 @@ export default function CopilotShell() {
           </div>
         ))}
 
-        {loading && (
-          <div className="flex gap-3 items-center text-xs text-[#556437] font-mono">
-            <div className="w-8 h-8 rounded-xl bg-[#43562b] text-white flex items-center justify-center animate-pulse">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <div className="flex items-center gap-2 p-3 bg-white rounded-2xl border border-[#d4dece] shadow-xs">
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#43562b]" />
-              <span>Querying AST graph & generating intelligence synthesis...</span>
+        {messages.length <= 1 && (
+          <div className="pt-2 pb-4">
+            <p className="text-xs font-mono font-bold text-[#556437] uppercase tracking-wider mb-3 px-1">
+              Recommended Starter Prompts
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                {
+                  title: 'Hotspot God-Classes',
+                  desc: 'Identify monolithic classes with cyclomatic complexity > 25',
+                  prompt: 'What are the highest-risk god-classes in our monorepo?',
+                  icon: Zap,
+                },
+                {
+                  title: 'Auth Refactoring Deep-Dive',
+                  desc: 'Analyze services/auth/token_provider.py and propose diffs',
+                  prompt: 'Explain the risk factors and remediation for services/auth/token_provider.py',
+                  icon: Code2,
+                },
+                {
+                  title: '5D ROI Quick Wins',
+                  desc: 'Explain formula weights and list high-impact refactorings',
+                  prompt: 'Show me the 5D formula weighting and ROI Quick Wins',
+                  icon: Layers,
+                },
+                {
+                  title: 'ML Defect Predictor',
+                  desc: 'Inspect Random Forest R² = 0.9885 metrics & SHAP drivers',
+                  prompt: 'How does the Random Forest defect predictor achieve R² = 0.9885?',
+                  icon: CheckCircle2,
+                },
+              ].map((item, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSend(item.prompt)}
+                  className="p-3.5 bg-white hover:bg-[#f4f6f0] text-left rounded-2xl border border-[#d4dece] hover:border-[#43562b] shadow-2xs hover:shadow-xs transition flex items-start gap-3 group cursor-pointer"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-[#edf1e8] group-hover:bg-[#43562b] group-hover:text-white text-[#2d3f16] flex items-center justify-center shrink-0 transition">
+                    <item.icon className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-[#161e10] group-hover:text-[#2d3f16]">
+                        {item.title}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#75786d] opacity-0 group-hover:opacity-100 transition" />
+                    </div>
+                    <p className="text-[11px] text-[#556437] mt-0.5 line-clamp-2">
+                      {item.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         )}

@@ -170,3 +170,32 @@ class Recommendation(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     file = relationship("SourceFile", back_populates="recommendations")
+
+
+class IntegrationConnection(Base):
+    __tablename__ = "integration_connections"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    user_id = Column(String(100), nullable=False, default="usr_lead_01", index=True)
+    provider = Column(String(50), nullable=False, index=True) # "github", "jira", "notion", "google"
+    provider_account_id = Column(String(100), nullable=True)
+    provider_account_name = Column(String(200), nullable=True)
+    avatar_url = Column(String(255), nullable=True)
+    
+    # Encrypted credential tokens
+    access_token_enc = Column(Text, nullable=True)
+    refresh_token_enc = Column(Text, nullable=True)
+    token_expires_at = Column(DateTime, nullable=True)
+    scopes = Column(Text, nullable=True)
+    
+    # Status: "CONNECTED", "DISCONNECTED", "EXPIRED", "ERROR"
+    status = Column(String(30), default="CONNECTED", index=True)
+    error_message = Column(Text, nullable=True)
+    
+    # JSON metadata for selected resources, webhook IDs, and provider configuration
+    metadata_json = Column(Text, default="{}")
+    
+    last_sync_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+

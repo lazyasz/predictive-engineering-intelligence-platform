@@ -3,20 +3,22 @@ import {
   Sliders, 
   GitPullRequest, 
   Layers, 
-  Sparkles, 
   FileText, 
   ShieldCheck, 
   Zap,
-  TrendingDown
+  TrendingDown,
+  DollarSign
 } from 'lucide-react';
 import WhatIfSimulator from '../components/simulator/WhatIfSimulator';
+import FinancialTcoEngine from '../components/simulator/FinancialTcoEngine';
 import PrRiskGateSimulator from '../components/cicd/PrRiskGateSimulator';
 import CodebaseTopologyTreemap from '../components/topology/CodebaseTopologyTreemap';
 import RemediationRecipeModal from '../components/remediation/RemediationRecipeModal';
 import ExecutiveReportModal from '../components/reports/ExecutiveReportModal';
+import SpringTabs from '../components/ui/SpringTabs';
 
 export default function Simulator() {
-  const [activeTab, setActiveTab] = useState('what-if'); // 'what-if' | 'topology' | 'pr-gate'
+  const [activeTab, setActiveTab] = useState('what-if'); // 'what-if' | 'financial-tco' | 'topology' | 'pr-gate'
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
   const [recipeTargetFile, setRecipeTargetFile] = useState(null);
   const [reportModalOpen, setReportModalOpen] = useState(false);
@@ -32,76 +34,54 @@ export default function Simulator() {
     setActiveTab('what-if');
   };
 
+  const tabs = [
+    { id: 'what-if', label: 'What-If ROI Simulator', icon: <Sliders className="w-3.5 h-3.5" /> },
+    { id: 'financial-tco', label: 'Executive Financial TCO', icon: <DollarSign className="w-3.5 h-3.5" /> },
+    { id: 'topology', label: 'Hotspot Treemap', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'pr-gate', label: 'CI/CD Risk Gate', icon: <GitPullRequest className="w-3.5 h-3.5" /> },
+  ];
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6 max-w-[1720px] mx-auto animate-fade-in">
       
       {/* Top Hero Banner with Mode Selector */}
-      <section className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 bg-white/90 backdrop-blur-md rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)]">
+      <section className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 bg-white rounded-xl border border-[#e2e4ea] shadow-2xs">
         <div className="space-y-1.5">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8f1db] text-[#2d3f16] font-mono text-[11px] font-bold tracking-wide uppercase">
-              <Zap className="w-3.5 h-3.5 text-[#43562b]" />
-              DebtScope Simulation & CI/CD Gates
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#f0ecfc] text-[#5b42a5] font-mono text-[11px] font-bold tracking-wide uppercase border border-[#d8cdfa]">
+              <Zap className="w-3 h-3 text-[#7048e8]" />
+              Simulation & Financial TCO Engine
             </span>
-            <span className="text-xs text-[#75786d] font-mono">Real-time SZZ Model Inference</span>
+            <span className="text-[11px] text-[#525866] font-mono">Real-time SZZ & ISO/IEC 25010 Models</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#161e10] tracking-tight">
-            DebtScope Refactoring ROI & Pre-Merge Risk Engine
+          <h1 className="text-xl sm:text-3xl font-bold text-[#0f1015] tracking-tight">
+            Refactoring ROI, Financial TCO & Pre-Merge Risk Engine
           </h1>
-          <p className="text-sm text-[#45483e] max-w-3xl">
-            Simulate code improvements, explore codebase spatial topology, and enforce automated pre-merge risk gates before production deploys.
+          <p className="text-xs sm:text-sm text-[#525866] max-w-3xl">
+            Simulate code improvements with real-time projection curves, compute balance-sheet TCO interest, explore spatial topology, and enforce automated pre-merge gates.
           </p>
         </div>
 
         {/* Action Button: 1-Click Executive PDF Report */}
-        <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setReportModalOpen(true)}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#43562b] hover:bg-[#2d3f16] text-white text-xs font-bold transition shadow-[0_4px_14px_rgba(45,63,22,0.3)] hover:shadow-lg active:scale-95 cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#130e24] hover:bg-[#20173d] text-white text-xs font-semibold transition shadow-2xs cursor-pointer"
           >
-            <FileText className="w-4 h-4" />
-            <span>Generate Executive Audit PDF</span>
+            <FileText className="w-3.5 h-3.5" />
+            <span>Generate Audit PDF</span>
           </button>
         </div>
       </section>
 
       {/* Feature Switcher Tabs */}
-      <div className="flex items-center gap-2 bg-[#edf1e8] p-1.5 rounded-2xl border border-[#c5c8ba] max-w-fit overflow-x-auto">
-        <button
-          onClick={() => setActiveTab('what-if')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-            activeTab === 'what-if'
-              ? 'bg-[#43562b] text-white shadow-sm'
-              : 'text-[#45483e] hover:text-[#161e10] hover:bg-[#dde5d7]'
-          }`}
-        >
-          <Sliders className="w-4 h-4" />
-          <span>What-If ROI Simulator</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab('topology')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-            activeTab === 'topology'
-              ? 'bg-[#43562b] text-white shadow-sm'
-              : 'text-[#45483e] hover:text-[#161e10] hover:bg-[#dde5d7]'
-          }`}
-        >
-          <Layers className="w-4 h-4" />
-          <span>Codebase Hotspot Treemap</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab('pr-gate')}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-            activeTab === 'pr-gate'
-              ? 'bg-[#43562b] text-white shadow-sm'
-              : 'text-[#45483e] hover:text-[#161e10] hover:bg-[#dde5d7]'
-          }`}
-        >
-          <GitPullRequest className="w-4 h-4" />
-          <span>GitHub CI/CD Risk Gate</span>
-        </button>
+      <div>
+        <SpringTabs
+          tabs={tabs}
+          activeTab={activeTab}
+          onChange={setActiveTab}
+          size="md"
+        />
       </div>
 
       {/* Active Feature Component */}
@@ -110,6 +90,12 @@ export default function Simulator() {
           <WhatIfSimulator
             initialModule={selectedModuleForSimulator}
             onOpenRecipe={handleOpenRecipe}
+          />
+        )}
+
+        {activeTab === 'financial-tco' && (
+          <FinancialTcoEngine
+            onOpenBoardroomReport={() => setReportModalOpen(true)}
           />
         )}
 

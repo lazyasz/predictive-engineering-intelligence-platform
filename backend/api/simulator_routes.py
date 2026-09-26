@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from backend.services.simulator_service import (
     calculate_what_if_simulation,
+    calculate_financial_tco_engine,
     generate_ai_remediation_recipe,
     evaluate_ci_cd_pull_request,
     generate_executive_audit_summary
@@ -24,6 +25,16 @@ class WhatIfRequest(BaseModel):
     developer_seniority: str = Field("Senior Engineer (6-8 yrs)", description="Assigned developer seniority")
     test_coverage_pct: float = Field(80.0, ge=0.0, le=100.0, description="Test coverage percentage (0-100%)")
     hourly_rate: float = Field(85.0, description="Hourly engineering rate in USD")
+    refactoring_budget_hours: Optional[float] = Field(None, description="Allocated refactoring hours budget")
+    refactoring_story_points: Optional[int] = Field(None, description="Allocated story points budget")
+    risk_tolerance: str = Field("balanced", description="Risk tolerance strategy ('conservative' | 'balanced' | 'aggressive')")
+
+
+class FinancialTcoRequest(BaseModel):
+    hourly_rate: float = Field(85.0, ge=1.0, le=1000.0, description="Blended engineering hourly rate in USD")
+    team_size: int = Field(12, ge=1, le=500, description="Total active developer headcount")
+    sprint_length_weeks: int = Field(2, ge=1, le=8, description="Sprint iteration cycle in weeks")
+    velocity_drag_pct: float = Field(24.5, ge=0.0, le=90.0, description="Estimated velocity slowdown percentage caused by debt")
 
 
 class AiRecipeRequest(BaseModel):
@@ -34,6 +45,7 @@ class AiRecipeRequest(BaseModel):
 
 
 class ChangedFileItem(BaseModel):
+
     filename: str = Field(..., description="Path of modified file")
     lines_added: int = Field(0, description="Lines added")
     lines_deleted: int = Field(0, description="Lines deleted")
@@ -55,7 +67,7 @@ def run_what_if_simulation(payload: WhatIfRequest):
     """
     Evaluates ML defect predictor across simulated refactoring effort,
     developer seniority transitions, and test coverage boosts, calculating
-    hours saved and financial ROI.
+    hours saved and financial ROI with multi-sprint projection curves.
     """
     return calculate_what_if_simulation(
         current_churn=payload.churn,
@@ -65,7 +77,24 @@ def run_what_if_simulation(payload: WhatIfRequest):
         refactoring_effort_pct=payload.refactoring_effort_pct,
         developer_seniority=payload.developer_seniority,
         test_coverage_pct=payload.test_coverage_pct,
-        hourly_rate=payload.hourly_rate
+        hourly_rate=payload.hourly_rate,
+        refactoring_budget_hours=payload.refactoring_budget_hours,
+        refactoring_story_points=payload.refactoring_story_points,
+        risk_tolerance=payload.risk_tolerance
+    )
+
+
+@router.post("/simulator/financial-tco", summary="Calculate Executive Financial TCO & Drag Interest Engine")
+def run_financial_tco_calculation(payload: FinancialTcoRequest):
+    """
+    Converts technical debt metrics into C-suite financial figures:
+    Principal Debt ($), Monthly Drag Tax ($), Payback Period, and Subsystem Breakdown.
+    """
+    return calculate_financial_tco_engine(
+        hourly_rate=payload.hourly_rate,
+        team_size=payload.team_size,
+        sprint_length_weeks=payload.sprint_length_weeks,
+        velocity_drag_pct=payload.velocity_drag_pct
     )
 
 

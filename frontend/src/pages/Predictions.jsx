@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import LoadingState from '../components/ui/LoadingState';
 import ErrorState from '../components/ui/ErrorState';
 import EmptyState from '../components/ui/EmptyState';
+import AnimatedCounter from '../components/ui/AnimatedCounter';
+import InteractiveCard from '../components/ui/InteractiveCard';
 import { 
   Activity, 
   Cpu, 
@@ -20,6 +22,7 @@ import {
   ShieldAlert,
   BrainCircuit
 } from 'lucide-react';
+import ChartTooltip from '../components/ui/ChartTooltip';
 import { 
   ResponsiveContainer, 
   BarChart, 
@@ -27,9 +30,7 @@ import {
   XAxis, 
   YAxis, 
   Tooltip, 
-  Cell,
-  LineChart,
-  Line
+  Cell
 } from 'recharts';
 
 export default function Predictions() {
@@ -59,14 +60,14 @@ export default function Predictions() {
   };
 
   const featureImportanceData = [
-    { feature: 'Cyclomatic Complexity', weight: 34, color: '#43562b' },
-    { feature: 'Recent Code Churn', weight: 28, color: '#556437' },
-    { feature: 'Lines of Code (LOC)', weight: 22, color: '#855300' },
-    { feature: 'Distinct Author Entropy', weight: 16, color: '#ba1a1a' },
+    { feature: 'Cyclomatic Complexity', weight: 34, color: '#384a24' },
+    { feature: 'Recent Code Churn', weight: 28, color: '#4d6332' },
+    { feature: 'Lines of Code (LOC)', weight: 22, color: '#687e45' },
+    { feature: 'Author Entropy', weight: 16, color: '#889d62' },
   ];
 
   const atRiskFiles = data.at_risk_files || [
-    { id: 1, file: 'services/auth/token_provider.py', current_risk: 72, predicted_risk: 89, confidence: 0.94, risk_delta: 17, risk_factors: ['High Churn', 'God Method'] },
+    { id: 1, file: 'services/auth_service/auth.go', current_risk: 72, predicted_risk: 89, confidence: 0.94, risk_delta: 17, risk_factors: ['High Churn', 'God Method'] },
     { id: 2, file: 'pipeline/analytics/spark_aggregator.py', current_risk: 68, predicted_risk: 84, confidence: 0.92, risk_delta: 16, risk_factors: ['High Complexity', 'Low Unit Test Coverage'] },
     { id: 3, file: 'api/routes/transaction_billing.py', current_risk: 65, predicted_risk: 79, confidence: 0.89, risk_delta: 14, risk_factors: ['Cyclomatic > 30', 'Rapid Mutation'] },
     { id: 4, file: 'models/decision_matrix_calculator.py', current_risk: 58, predicted_risk: 72, confidence: 0.91, risk_delta: 14, risk_factors: ['Duplication', 'Nested Conditionals'] },
@@ -76,21 +77,21 @@ export default function Predictions() {
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6 space-y-6 max-w-[1720px] mx-auto animate-fade-in">
       
       {/* Sub-Header & Controls */}
-      <section className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 p-6 bg-white/90 backdrop-blur-md rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)]">
-        <div className="space-y-1.5 max-w-4xl">
+      <section className="flex flex-col xl:flex-row xl:items-end justify-between gap-4 p-6 sm:p-8 bg-white/95 backdrop-blur-xl rounded-3xl border border-[#d4dece] shadow-[0_8px_30px_-6px_rgba(45,63,22,0.08)]">
+        <div className="space-y-2 max-w-4xl">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8f1db] text-[#2d3f16] font-mono text-[11px] font-bold tracking-wider uppercase">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8f1db] text-[#2d3f16] font-mono text-xs font-bold tracking-wider uppercase border border-[#c5c8ba]/60">
               <span className="w-2 h-2 rounded-full bg-[#43562b] animate-pulse"></span>
               Supervised AST Random Forest Regressor
             </span>
-            <span className="text-xs text-[#75786d] font-mono px-2.5 py-0.5 rounded-full bg-[#edf1e8]">
+            <span className="text-xs text-[#45483e] font-mono px-2.5 py-0.5 rounded-full bg-[#edf1e8] border border-[#d4dece]">
               Model v4.2.8
             </span>
             <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#d3e4ac] text-[#2d3f16] font-mono font-bold">
               Inference: 4.8ms
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#161e10] tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#161e10] tracking-tight">
             Telemetry Intelligence & Defect Predictor
           </h1>
           <p className="text-sm text-[#45483e] max-w-3xl">
@@ -104,7 +105,7 @@ export default function Predictions() {
               const element = document.getElementById('defect-simulator');
               if (element) element.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] text-xs font-bold transition border border-[#c5c8ba] shadow-xs cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-[#edf1e8] hover:bg-[#dde5d7] text-[#2d3f16] text-xs font-bold transition border border-[#c5c8ba] shadow-xs cursor-pointer active:scale-95"
           >
             <Sliders className="w-4 h-4 text-[#43562b]" />
             <span>Defect Simulator</span>
@@ -120,114 +121,137 @@ export default function Predictions() {
         </div>
       </section>
 
-      {/* Filter / Model Meta Bar */}
-      <section className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-[#161e10] font-mono shadow-xs border border-[#d4dece] shrink-0">
+      {/* 4 Model Performance Capsule Badges */}
+      <section className="flex items-center gap-3 overflow-x-auto pb-1 text-xs font-mono">
+        <div className="flex items-center gap-2 px-3.5 py-2 bg-white rounded-2xl border border-[#d4dece] shadow-2xs whitespace-nowrap">
           <Activity className="w-3.5 h-3.5 text-[#43562b]" />
-          <span>Calibrated: <strong className="text-[#2d3f16]">2 hrs ago</strong></span>
+          <span className="text-[#45483e]">Calibrated:</span>
+          <strong className="text-[#161e10]">2 hrs ago</strong>
         </div>
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-[#161e10] font-mono shadow-xs border border-[#d4dece] shrink-0">
-          <Cpu className="w-3.5 h-3.5 text-[#556437]" />
-          <span>5-Fold Cross-Val: <strong className="text-[#2d3f16]">R² = 0.9849</strong></span>
+
+        <div className="flex items-center gap-2 px-3.5 py-2 bg-white rounded-2xl border border-[#d4dece] shadow-2xs whitespace-nowrap">
+          <BrainCircuit className="w-3.5 h-3.5 text-[#43562b]" />
+          <span className="text-[#45483e]">5-Fold Cross-Val:</span>
+          <strong className="text-[#161e10]">R² = 0.9849</strong>
         </div>
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white text-[#161e10] font-mono shadow-xs border border-[#d4dece] shrink-0">
-          <BrainCircuit className="w-3.5 h-3.5 text-[#855300]" />
-          <span>Corpus: <strong className="text-[#161e10]">18,400 Commit ASTs</strong></span>
+
+        <div className="flex items-center gap-2 px-3.5 py-2 bg-white rounded-2xl border border-[#d4dece] shadow-2xs whitespace-nowrap">
+          <Code2 className="w-3.5 h-3.5 text-[#43562b]" />
+          <span className="text-[#45483e]">Corpus:</span>
+          <strong className="text-[#161e10]">18,400 Commit ASTs</strong>
         </div>
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#e8f1db] text-[#2d3f16] font-mono font-bold shadow-xs border border-[#c5c8ba] shrink-0">
+
+        <div className="flex items-center gap-2 px-3.5 py-2 bg-[#e8f1db] rounded-2xl border border-[#c5c8ba] shadow-2xs whitespace-nowrap ml-auto">
           <CheckCircle2 className="w-3.5 h-3.5 text-[#43562b]" />
-          <span>R² Fit: 0.9885 (High Confidence)</span>
+          <span className="text-[#2d3f16] font-bold">R² Fit: 0.9885 (High Confidence)</span>
         </div>
       </section>
 
-      {/* Top 4 Bento KPI Metric Cards */}
+      {/* 4 Bento KPI Metric Capsules with Specular Sheen & Animated Counters */}
       <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
         
-        {/* KPI 1: Hero Lustrous Card */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-[#4d6332] via-[#384a24] to-[#253314] p-6 rounded-3xl text-white shadow-[0_12px_28px_-6px_rgba(37,51,20,0.4)] flex flex-col justify-between border border-[#5b723a]/30 min-h-[200px]">
+        <InteractiveCard
+          dark={true}
+          isInteractive={true}
+          className="min-h-[190px] flex flex-col justify-between"
+        >
           <div className="flex items-start justify-between relative z-10">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#d3ebb2] font-bold">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#d3ebb2] font-bold">
                 ML Defect Vulnerability
               </span>
-              <div className="text-3xl font-extrabold tracking-tight mt-1 text-white leading-none">
-                38.5% <span className="text-sm text-[#d3ebb2]/80 font-normal">Exposure</span>
+              <div className="text-3xl font-extrabold tracking-tight mt-1 text-white leading-none font-mono">
+                <AnimatedCounter value={38.5} decimals={1} />% <span className="text-base text-[#d3ebb2]/80 font-normal font-sans">Exposure</span>
               </div>
             </div>
-            <span className="px-2 py-0.5 rounded-full bg-white/15 text-[10px] font-mono font-bold">
+            <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-white/20">
               +4.2% Sprint 48
             </span>
           </div>
-
-          <div className="pt-4 relative z-10 flex items-center justify-between text-xs font-mono text-[#d3ebb2]">
-            <span>14 Modules Exposed</span>
-            <span className="font-bold text-white">R² = 0.9885 Fit</span>
+          <div className="pt-3 flex items-center justify-between z-10 text-xs border-t border-white/10">
+            <span className="text-[#d3ebb2] font-mono">14 Modules Exposed</span>
+            <span className="font-mono font-bold text-white">R² = 0.9885 Fit</span>
           </div>
-        </div>
+        </InteractiveCard>
 
-        {/* KPI 2: Mean Absolute Error */}
-        <div className="p-6 bg-white rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between">
+        <InteractiveCard
+          isInteractive={true}
+          className="min-h-[190px] flex flex-col justify-between"
+        >
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#75786d] font-bold">Mean Absolute Error</span>
-              <div className="text-3xl font-extrabold text-[#161e10] mt-1">1.085 <span className="text-sm font-normal text-[#75786d]">LOC/Defect</span></div>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#45483e] font-bold">Mean Absolute Error</span>
+              <div className="text-3xl font-extrabold text-[#161e10] mt-1 font-mono">
+                <AnimatedCounter value={1.085} decimals={3} /> <span className="text-sm font-normal text-[#45483e] font-sans">LOC/Defect</span>
+              </div>
             </div>
-            <span className="p-2 rounded-2xl bg-[#e8f1db] text-[#43562b]">
+            <span className="p-2.5 rounded-2xl bg-[#d3e4ac] text-[#2d3f16]">
               <BarChart3 className="w-5 h-5" />
             </span>
           </div>
-          <div className="pt-3 flex items-center justify-between text-xs font-mono text-[#75786d]">
+          <div className="flex items-center justify-between text-xs text-[#45483e] font-mono pt-3 border-t border-[#e5ebe0]">
             <span>Low Var σ²: 0.04</span>
-            <span className="font-bold text-[#161e10]">RMSE: 1.242</span>
+            <strong className="text-[#161e10]">RMSE: 1.242</strong>
           </div>
-        </div>
+        </InteractiveCard>
 
-        {/* KPI 3: Regressor Architecture */}
-        <div className="p-6 bg-white rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between">
+        <InteractiveCard
+          isInteractive={true}
+          className="min-h-[190px] flex flex-col justify-between"
+        >
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#75786d] font-bold">Ensemble Architecture</span>
-              <div className="text-3xl font-extrabold text-[#161e10] mt-1">300 <span className="text-sm font-normal text-[#75786d]">Trees</span></div>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#45483e] font-bold">Ensemble Architecture</span>
+              <div className="text-3xl font-extrabold text-[#161e10] mt-1 font-mono">
+                <AnimatedCounter value={300} /> <span className="text-sm font-normal text-[#45483e] font-sans">Trees</span>
+              </div>
             </div>
-            <span className="p-2 rounded-2xl bg-[#d3e4ac] text-[#2d3f16]">
+            <span className="p-2.5 rounded-2xl bg-[#ffddb8] text-[#855300]">
               <Cpu className="w-5 h-5" />
             </span>
           </div>
-          <span className="text-xs font-mono text-[#556437] pt-3">Max Depth 12 · MSE Criterion</span>
-        </div>
+          <div className="flex items-center justify-between text-xs text-[#45483e] font-mono pt-3 border-t border-[#e5ebe0]">
+            <span>Max Depth 12</span>
+            <span>MSE Criterion</span>
+          </div>
+        </InteractiveCard>
 
-        {/* KPI 4: Top Predictive Driver */}
-        <div className="p-6 bg-white rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between">
+        <InteractiveCard
+          isInteractive={true}
+          className="min-h-[190px] flex flex-col justify-between"
+        >
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[#75786d] font-bold">Primary SHAP Driver</span>
-              <div className="text-3xl font-extrabold text-[#161e10] mt-1">34% <span className="text-sm font-normal text-[#75786d]">Weight</span></div>
+              <span className="text-xs font-mono uppercase tracking-wider text-[#45483e] font-bold">Primary SHAP Driver</span>
+              <div className="text-3xl font-extrabold text-[#161e10] mt-1 font-mono">
+                <AnimatedCounter value={34} />% <span className="text-sm font-normal text-[#45483e] font-sans">Weight</span>
+              </div>
             </div>
-            <span className="p-2 rounded-2xl bg-[#ffdad6] text-[#ba1a1a]">
+            <span className="p-2.5 rounded-2xl bg-[#ffdad6] text-[#ba1a1a]">
               <Flame className="w-5 h-5" />
             </span>
           </div>
-          <span className="text-xs font-semibold text-[#ba1a1a] pt-3">Cyclomatic Complexity</span>
-        </div>
+          <span className="text-xs text-[#ba1a1a] font-semibold pt-3 border-t border-[#e5ebe0]">Cyclomatic Complexity</span>
+        </InteractiveCard>
       </section>
 
-      {/* Mid Bento: Feature Importance + Interactive Live Simulator */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-5" id="defect-simulator">
+      {/* Feature Importance & Interactive Live Simulator Bento Grid */}
+      <section id="defect-simulator" className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        {/* Left Bento: Feature Importance SHAP Bars (5 cols) */}
+        {/* Left Bento: Feature Importance SHAP (5 cols) */}
         <div className="lg:col-span-5 p-6 bg-white rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] flex flex-col justify-between space-y-4">
           <div>
             <h2 className="text-lg font-bold text-[#161e10]">Feature Importance Rankings</h2>
-            <p className="text-xs text-[#75786d]">SHAP value decomposition for Random Forest Regressor</p>
+            <p className="text-xs text-[#45483e]">SHAP value decomposition for Random Forest Regressor</p>
           </div>
 
-          <div className="h-48 w-full pt-2">
+          <div className="h-56 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={featureImportanceData} layout="vertical" margin={{ left: 20, right: 20 }}>
-                <XAxis type="number" domain={[0, 40]} tick={{ fontSize: 10, fill: '#75786d' }} />
-                <YAxis dataKey="feature" type="category" width={110} tick={{ fontSize: 10, fill: '#161e10' }} />
-                <Tooltip contentStyle={{ backgroundColor: '#1e2a0f', borderRadius: '12px', color: '#fff', fontSize: '11px' }} />
-                <Bar dataKey="weight" radius={[0, 8, 8, 0]}>
+              <BarChart layout="vertical" data={featureImportanceData} margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
+                <XAxis type="number" stroke="#75786d" fontSize={11} domain={[0, 40]} />
+                <YAxis dataKey="feature" type="category" stroke="#45483e" fontSize={11} width={140} tickLine={false} />
+                <Tooltip content={<ChartTooltip unit="%" />} />
+                <Bar dataKey="weight" fill="#43562b" radius={[0, 8, 8, 0]} isAnimationActive={false}>
                   {featureImportanceData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
@@ -236,20 +260,18 @@ export default function Predictions() {
             </ResponsiveContainer>
           </div>
 
-          <div className="p-3 bg-[#f8faf6] rounded-2xl border border-[#e5ebe0] text-xs text-[#45483e] space-y-1">
-              <span className="font-bold text-[#161e10]">Model Interpretation:</span>
-              <p className="text-[11px] leading-relaxed">
-                Complexity combined with High Churn increases defect likelihood exponentially (&gt;2.8&times;).
-              </p>
-            </div>
+          <div className="p-3 bg-[#f8faf6] rounded-2xl border border-[#e5ebe0] text-xs text-[#45483e]">
+            <span className="font-bold text-[#161e10]">Model Interpretation: </span>
+            <span>Complexity combined with High Churn increases defect likelihood exponentially (&gt;2.8&times;).</span>
+          </div>
         </div>
 
         {/* Right Bento: Interactive Real-Time Defect Simulator (7 cols) */}
         <div className="lg:col-span-7 p-6 bg-white rounded-3xl border border-[#d4dece] shadow-[0_4px_20px_-4px_rgba(45,63,22,0.06)] space-y-5">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-2">
             <div>
               <h2 className="text-lg font-bold text-[#161e10]">Live Defect Risk Simulator</h2>
-              <p className="text-xs text-[#75786d]">Adjust AST telemetry parameters to calculate live forecasted defect probability</p>
+              <p className="text-xs text-[#45483e]">Adjust AST telemetry parameters to calculate live forecasted defect probability</p>
             </div>
             <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#e8f1db] text-[#2d3f16]">
               Real-Time Inference
@@ -325,14 +347,14 @@ export default function Predictions() {
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[11px] text-[#556437] font-mono font-bold uppercase block">Predicted Defect Likelihood</span>
+                <span className="text-xs text-[#556437] font-mono font-bold uppercase block">Predicted Defect Likelihood</span>
                 <span className="text-2xl font-extrabold text-[#2d3f16]">{calcDefectProb()}%</span>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
               <div>
-                <span className="text-[11px] text-[#75786d] font-mono font-bold uppercase block text-right">Future Risk Score</span>
+                <span className="text-xs text-[#45483e] font-mono font-bold uppercase block text-right">Future Risk Score</span>
                 <span className="text-2xl font-extrabold text-[#ba1a1a] text-right block">{calcRiskScore()} / 100</span>
               </div>
             </div>
@@ -345,27 +367,84 @@ export default function Predictions() {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h2 className="text-lg font-bold text-[#161e10]">Predicted High-Defect Risk Files ({atRiskFiles.length})</h2>
-            <p className="text-xs text-[#75786d]">Modules with rising risk trajectory flagged by our trained Random Forest Regressor</p>
+            <p className="text-xs text-[#45483e]">Modules with rising risk trajectory flagged by our trained Random Forest Regressor</p>
           </div>
           <button
             onClick={() => navigate('/priorities')}
-            className="flex items-center gap-1.5 text-xs font-bold text-[#43562b] hover:underline"
+            className="flex items-center gap-1.5 text-xs font-bold text-[#43562b] hover:text-[#2d3f16] transition cursor-pointer"
           >
             <span>View Remediation Backlog</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile Card List (< 768px) */}
+        <div className="md:hidden space-y-3">
+          {atRiskFiles.map((file) => (
+            <div
+              key={file.id}
+              onClick={() => navigate(`/files/${file.id}`)}
+              className="p-4 bg-[#f8faf6] hover:bg-[#eef3e8] border border-[#d4dece] rounded-2xl transition cursor-pointer space-y-3"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <Code2 className="w-4 h-4 text-[#43562b] shrink-0" />
+                  <span className="font-mono font-bold text-sm text-[#161e10] truncate">
+                    {file.file}
+                  </span>
+                </div>
+                <span className="font-mono font-bold text-xs text-[#2d3f16] bg-[#d3ebb2] px-2 py-0.5 rounded-full shrink-0">
+                  {(file.confidence * 100).toFixed(0)}% Conf
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-[#e5ebe0] text-center">
+                <div className="bg-white p-2 rounded-xl border border-[#e5ebe0]">
+                  <span className="text-[11px] font-mono text-[#45483e] block">Current</span>
+                  <span className="font-mono font-bold text-sm text-[#45483e] whitespace-nowrap">
+                    {file.current_risk}
+                  </span>
+                </div>
+                <div className="bg-white p-2 rounded-xl border border-[#e5ebe0]">
+                  <span className="text-[11px] font-mono text-[#45483e] block">Predicted</span>
+                  <span className="font-mono font-bold text-sm text-[#ba1a1a] whitespace-nowrap">
+                    {file.predicted_risk} (+{file.risk_delta})
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {file.risk_factors.map((factor, i) => (
+                  <span key={i} className="px-2 py-0.5 rounded-full bg-[#edf1e8] text-[#2d3f16] font-mono text-[10px] font-semibold border border-[#d4dece]">
+                    {factor}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex justify-end pt-1" onClick={(e) => e.stopPropagation()}>
+                <button
+                  onClick={() => navigate(`/files/${file.id}`)}
+                  className="px-3 py-1.5 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-xs font-bold transition flex items-center gap-1 shadow-xs"
+                >
+                  <span>Inspect</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop/Tablet Table (>= 768px) */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-[#e5ebe0] text-[#75786d] uppercase font-mono text-[10px]">
+              <tr className="border-b border-[#e5ebe0] text-[#45483e] uppercase font-mono text-xs">
                 <th className="py-3 px-4 font-bold">Module Path</th>
-                <th className="py-3 px-4 font-bold text-center">Current Risk</th>
-                <th className="py-3 px-4 font-bold text-center">Predicted Risk</th>
-                <th className="py-3 px-4 font-bold text-center">Confidence</th>
+                <th className="py-3 px-4 font-bold text-center whitespace-nowrap">Current Risk</th>
+                <th className="py-3 px-4 font-bold text-center whitespace-nowrap">Predicted Risk</th>
+                <th className="py-3 px-4 font-bold text-center whitespace-nowrap">Confidence</th>
                 <th className="py-3 px-4 font-bold">Identified Risk Drivers</th>
-                <th className="py-3 px-4 font-bold text-right">Action</th>
+                <th className="py-3 px-4 font-bold text-right whitespace-nowrap">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#f4f6f0]">
@@ -375,42 +454,42 @@ export default function Predictions() {
                   onClick={() => navigate(`/files/${file.id}`)}
                   className="hover:bg-[#f8faf6] transition cursor-pointer group"
                 >
-                  <td className="py-3 px-4">
+                  <td className="py-3.5 px-4">
                     <div className="flex items-center gap-2">
-                      <Code2 className="w-4 h-4 text-[#43562b]" />
+                      <Code2 className="w-4 h-4 text-[#43562b] shrink-0" />
                       <span className="font-mono font-semibold text-[#161e10] group-hover:text-[#43562b] transition">
                         {file.file}
                       </span>
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-center font-mono text-[#45483e]">
+                  <td className="py-3.5 px-4 text-center font-mono text-[#45483e] whitespace-nowrap">
                     {file.current_risk}
                   </td>
-                  <td className="py-3 px-4 text-center font-mono font-bold text-[#ba1a1a]">
+                  <td className="py-3.5 px-4 text-center font-mono font-bold text-[#ba1a1a] whitespace-nowrap">
                     {file.predicted_risk}
-                    <span className="text-[10px] text-[#ba1a1a] ml-1 font-semibold">
+                    <span className="text-xs text-[#ba1a1a] ml-1 font-semibold">
                       (+{file.risk_delta})
                     </span>
                   </td>
-                  <td className="py-3 px-4 text-center font-mono font-semibold text-[#2d3f16]">
+                  <td className="py-3.5 px-4 text-center font-mono font-semibold text-[#2d3f16] whitespace-nowrap">
                     {(file.confidence * 100).toFixed(0)}%
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-3.5 px-4">
                     <div className="flex flex-wrap gap-1.5">
                       {file.risk_factors.map((factor, i) => (
-                        <span key={i} className="px-2 py-0.5 rounded-full bg-[#edf1e8] text-[#2d3f16] font-mono text-[10px] font-semibold border border-[#d4dece]">
+                        <span key={i} className="px-2 py-0.5 rounded-full bg-[#edf1e8] text-[#2d3f16] font-mono text-xs font-semibold border border-[#d4dece] whitespace-nowrap">
                           {factor}
                         </span>
                       ))}
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-right" onClick={(e) => e.stopPropagation()}>
+                  <td className="py-3.5 px-4 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                     <button
                       onClick={() => navigate(`/files/${file.id}`)}
-                      className="px-2.5 py-1 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-[11px] font-bold transition flex items-center gap-1 shadow-xs ml-auto"
+                      className="px-3 py-1.5 bg-[#43562b] hover:bg-[#2d3f16] text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs ml-auto cursor-pointer"
                     >
                       <span>Inspect</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </td>
                 </tr>

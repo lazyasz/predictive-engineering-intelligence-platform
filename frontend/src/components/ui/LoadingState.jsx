@@ -1,10 +1,14 @@
-import { Loader2 } from 'lucide-react';
+import React from 'react';
+import { Activity } from 'lucide-react';
 
-export default function LoadingState({ message = 'Loading data...' }) {
+export default function LoadingState({ message = 'Synchronizing AST telemetry & predictive models...' }) {
   return (
-    <div className="flex flex-col items-center justify-center py-20">
-      <Loader2 className="h-8 w-8 text-indigo-500 animate-spin" />
-      <p className="mt-3 text-sm text-slate-500">{message}</p>
+    <div className="flex flex-col items-center justify-center py-24 select-none animate-fade-in">
+      <div className="relative flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full border-2 border-[#e2e4ea] border-t-[#7048e8] animate-spin" />
+        <Activity className="w-4 h-4 text-[#7048e8] absolute" />
+      </div>
+      <p className="mt-4 text-xs font-mono text-[#525866] font-medium tracking-tight">{message}</p>
     </div>
   );
 }

@@ -110,3 +110,25 @@ def test_executive_audit_summary_report():
     assert "executive_kpis" in data
     assert "top_hotspot_actions" in data
     assert len(data["compliance_certifications"]) > 0
+
+
+def test_financial_tco_calculation_endpoint():
+    """Tests executive financial TCO and interest rate calculations."""
+    payload = {
+        "hourly_rate": 90.0,
+        "team_size": 15,
+        "sprint_length_weeks": 2,
+        "velocity_drag_pct": 25.0
+    }
+    response = client.post("/api/simulator/financial-tco", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert "kpis" in data
+    assert "subsystems" in data
+    assert "twelve_month_projection" in data
+    assert data["kpis"]["principal_debt_usd"] > 0
+    assert data["kpis"]["monthly_interest_drag_usd"] > 0
+    assert data["kpis"]["payback_period_months"] > 0
+    assert len(data["subsystems"]) == 5
+    assert len(data["twelve_month_projection"]) == 12
+

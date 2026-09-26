@@ -56,14 +56,26 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_SECRET: str = ""
     GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/v1/auth/google/callback"
 
-    # Integrations: Atlassian Jira Cloud
+    # Integrations: GitHub App & OAuth
+    GITHUB_CLIENT_ID: str = ""
+    GITHUB_CLIENT_SECRET: str = ""
+    GITHUB_APP_ID: str = ""
+    GITHUB_WEBHOOK_SECRET: str = ""
+
+    # Integrations: Atlassian Jira Cloud (OAuth 2.0 3LO & REST API)
+    JIRA_CLIENT_ID: str = ""
+    JIRA_CLIENT_SECRET: str = ""
+    JIRA_REDIRECT_URI: str = "http://localhost:5173/auth/callback"
     JIRA_BASE_URL: str = ""
     JIRA_DOMAIN: str = ""
     JIRA_EMAIL: str = ""
     JIRA_API_TOKEN: str = ""
     JIRA_PROJECT_KEY: str = "DEBT"
 
-    # Integrations: Notion
+    # Integrations: Notion (OAuth 2.0 & REST API v1)
+    NOTION_CLIENT_ID: str = ""
+    NOTION_CLIENT_SECRET: str = ""
+    NOTION_REDIRECT_URI: str = "http://localhost:5173/auth/callback"
     NOTION_API_KEY: str = ""
     NOTION_DATABASE_ID: str = ""
 
